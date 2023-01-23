@@ -1,6 +1,4 @@
-{
-  "description": "tarot cards and basic information about them, as well as references to corresponding scans",
-  "cards": [
+export const tarotInfo = {[
     {
       "name": "The Fool",
       "number": "0",
