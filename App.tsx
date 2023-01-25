@@ -1,18 +1,51 @@
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useState } from "react";
-import { StatusBar } from 'expo-status-bar';
 import { Text, View } from 'react-native';
-import { Form, FormItem } from "react-native-form-component";
-import { SearchBar } from "./Components/SearchBar"
-import { Library } from "./Components/Library"
+import { Library } from "./Screens/Library"
+import HomePage from "./Screens/HomePage";
+import ToBeConstructed from "./Screens/ToBeConstructed";
 
 
+type RootStackParamList = {
+  HomePage: undefined
+  Library: undefined
+  OneCardReading: undefined
+  ThreeCardReading: undefined
+  MyJournal: undefined
+  JournalEntry: undefined
+  Guide: undefined
+  ProfilePage: undefined
+  SignInUp: undefined
+}
 
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
-export default function App() {
+export type Props = NativeStackScreenProps<RootStackParamList>;
+
+function App(){
+
+  const [journals, setJournals] = useState([])
+  const [loggedInAs, setLoggedInAs] = useState(null)
+  const [dailyCardSelected, setDailyCardSelected] = useState("m00.jpg")
+
 
   return (
-  <View className="flex-1 items-center justify-center bg-white">
-      <Library />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="HomePage" component={HomePage} />
+        <Stack.Screen name="Library" component={Library} />
+        <Stack.Screen name="OneCardReading" component={ToBeConstructed} />
+        <Stack.Screen name="ThreeCardReading" component={ToBeConstructed} />
+        <Stack.Screen name="MyJournal" component={ToBeConstructed} />
+        <Stack.Screen name="JournalEntry" component={ToBeConstructed} />
+        <Stack.Screen name="Guide" component={ToBeConstructed} />
+        <Stack.Screen name="ProfilePage" component={ToBeConstructed} />
+        <Stack.Screen name="SignInUp" component={ToBeConstructed} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
+
+export default App
