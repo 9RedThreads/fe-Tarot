@@ -1,22 +1,24 @@
 import { View, Text } from "react-native";
 import { Props } from "../App";
 import { journalExample } from "./JournalPreview";
-import {
-  CompositeNavigationProp,
-  useNavigation,
-} from "@react-navigation/native";
+import { RootStackParamList } from "../App";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+
+export type NavigateToJournalEntriesProp =
+  NativeStackNavigationProp<RootStackParamList>;
 
 const JournalPreviewCard = (
   recentJournal: journalExample,
   { route }: Props
 ) => {
-  const navigation = useNavigation<JournalPreviewNavigationProp>();
+  const navigation = useNavigation<NavigateToJournalEntriesProp>();
 
   return (
     <View>
       <Text
         onPress={() => {
-          navigation.navigate("OneCardReading");
+          navigation.navigate("JournalEntries");
         }}
       >
         Journal Preview Card

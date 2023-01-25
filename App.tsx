@@ -1,35 +1,33 @@
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { useState } from "react";
-import { Text, View } from 'react-native';
-import { Library } from "./Screens/Library"
+import { Text, View } from "react-native";
+import { Library } from "./Screens/Library";
 import HomePage from "./Screens/HomePage";
 import ToBeConstructed from "./Screens/ToBeConstructed";
 
-
-type RootStackParamList = {
-  HomePage: undefined
-  Library: undefined
-  OneCardReading: undefined
-  ThreeCardReading: undefined
-  MyJournal: undefined
-  JournalEntry: undefined
-  Guide: undefined
-  ProfilePage: undefined
-  SignInUp: undefined
-}
+export type RootStackParamList = {
+  HomePage: undefined;
+  Library: undefined;
+  OneCardReading: undefined;
+  ThreeCardReading: undefined;
+  MyJournal: undefined;
+  JournalEntry: undefined;
+  Guide: undefined;
+  ProfilePage: undefined;
+  SignInUp: undefined;
+  JournalEntries: undefined;
+};
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export type Props = NativeStackScreenProps<RootStackParamList>;
 
-function App(){
-
-  const [journals, setJournals] = useState([])
-  const [loggedInAs, setLoggedInAs] = useState(null)
-  const [dailyCardSelected, setDailyCardSelected] = useState("m00.jpg")
-
+function App() {
+  const [journals, setJournals] = useState([]);
+  const [loggedInAs, setLoggedInAs] = useState(null);
+  const [dailyCardSelected, setDailyCardSelected] = useState("m00.jpg");
 
   return (
     <NavigationContainer>
@@ -43,9 +41,10 @@ function App(){
         <Stack.Screen name="Guide" component={ToBeConstructed} />
         <Stack.Screen name="ProfilePage" component={ToBeConstructed} />
         <Stack.Screen name="SignInUp" component={ToBeConstructed} />
+        <Stack.Screen name="JournalEntries" component={ToBeConstructed} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
-export default App
+export default App;
