@@ -3,6 +3,7 @@ import { View, Text } from 'react-native'
 import React, { useState } from 'react'
 import JournalPreviewCard from './JournalPreviewCard'
 import { Props } from '../App'
+import { useNavigation } from "@react-navigation/native";
 
 
 export type journalExample = {recentJournal: { 
