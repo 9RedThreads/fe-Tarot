@@ -3,6 +3,8 @@ import BottomTabNavigator from "./BottomTabNavigator";
 import AuthScreen from "../Screens/AuthScreen";
 import ThreeCardsReadingScreen from "../Screens/ThreeCardsReadingScreen";
 import OneCardReadingScreen from "../Screens/OneCardReadingScreen";
+import JournalEntriesScreen from '../Screens/JournalEntriesScreen';
+
 
 export type RootStackParamList = {
   BottomTabNavigator: undefined;

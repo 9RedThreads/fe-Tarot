@@ -5,13 +5,10 @@ import { RootStackParamList } from "../App";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 
-export type NavigateToJournalEntriesProp =
+type NavigateToJournalEntriesProp =
   NativeStackNavigationProp<RootStackParamList>;
 
-const JournalPreviewCard = (
-  recentJournal: journalExample,
-  { route }: Props
-) => {
+const JournalPreviewCard = ({ recentJournal }: Props) => {
   const navigation = useNavigation<NavigateToJournalEntriesProp>();
 
   return (
@@ -21,7 +18,8 @@ const JournalPreviewCard = (
           navigation.navigate("JournalEntries");
         }}
       >
-        Journal Preview Card
+        Journal Preview Card from 
+        {recentJournal.created_at}-{recentJournal.journalBody}
       </Text>
     </View>
   );
