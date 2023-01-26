@@ -25,7 +25,7 @@ const journalExample = {
 }
 
 const journalExample2 = {
-    isSingleCard: true,
+    isSingleCard: false,
     layoutType: null,
     cardsSelected: [{}],
     intention: "intention",
