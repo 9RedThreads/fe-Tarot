@@ -1,18 +1,13 @@
-import React, { useState } from "react";
-import { StatusBar } from 'expo-status-bar';
-import { Text, View } from 'react-native';
-import { Form, FormItem } from "react-native-form-component";
-import { SearchBar } from "./Components/SearchBar"
-import { Library } from "./Components/Library"
+import { NavigationContainer } from "@react-navigation/native";
+import React from "react";
+import RootNavigator from "./navigator/RootNavigator";
 
-
-
-
-export default function App() {
-
-  return (
-  <View className="flex-1 items-center justify-center bg-white">
-      <Library />
-    </View>
-  );
+function App() {
+  return(
+    <NavigationContainer>
+      <RootNavigator />
+    </NavigationContainer>
+  )
 }
+
+export default App;
