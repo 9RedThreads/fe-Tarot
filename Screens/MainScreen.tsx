@@ -1,4 +1,5 @@
-import { View, Text, TouchableOpacity, Button } from "react-native";
+import { Component } from "react";
+import { ScrollView, Text, TouchableOpacity, Button, Image } from "react-native";
 import {
   useNavigation,
   CompositeNavigationProp,
@@ -10,6 +11,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import React from "react";
 import { styled } from "nativewind";
+import JournalPreview from "../Components/JournalPreview";
 
 type MainScreenNavigation = CompositeNavigationProp<
   BottomTabNavigationProp<BottomTabStackParamList>,
@@ -20,16 +22,23 @@ const MainScreen = () => {
   const navigation = useNavigation<MainScreenNavigation>();
 
   return (
-    <View>
+    <ScrollView>
       <Text>Tarrot App Main Screen</Text>
       <TouchableOpacity onPress={() => navigation.navigate("Auth")}>
         <Text>Login / SignIng ( click me)</Text>
       </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate("OneCardReading")}>
+        <Image
+          onPress={() => navigation.navigate("ThreeCardsReading")}
+          source={require("../Tarot-cards/card-img/backOfCardsTestImage.jpg")}
+        />
+      </TouchableOpacity>
       <Button
-        title="hello"
-        onPress={() => navigation.navigate("Auth")}
+        title="3 Card Reading"
+        onPress={() => navigation.navigate("ThreeCardsReading")}
       ></Button>
-    </View>
+      <JournalPreview></JournalPreview>
+    </ScrollView>
   );
 };
 

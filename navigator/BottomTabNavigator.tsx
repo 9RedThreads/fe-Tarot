@@ -12,7 +12,7 @@ import { View } from 'react-native';
 export type BottomTabStackParamList = {
     Main:undefined;
     ThreeCardsReading: undefined;
-    Journal: undefined;
+    JournalEntries: undefined;
     Learning: undefined;
 
 };
@@ -51,7 +51,7 @@ const BottomTabNavigator = () => {
             },
           })}
         />
-        <BottomTab.Screen name="Journal" component={JournalEntriesScreen} />
+        <BottomTab.Screen name="JournalEntries" component={JournalEntriesScreen} />
         <BottomTab.Screen name="Learning" component={LearningScreen} />
       </BottomTab.Navigator>
     );
