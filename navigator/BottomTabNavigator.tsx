@@ -7,6 +7,7 @@ import MainScreen from '../Screens/MainScreen';
 import LearningScreen from '../Screens/LearningScreen';
 import ThreeCardsReadingScreen from '../Screens/ThreeCardsReadingScreen';
 import JournalEntriesScreen from '../Screens/JournalEntriesScreen';
+import { View } from 'react-native';
 
 export type BottomTabStackParamList = {
     Main:undefined;
@@ -33,14 +34,22 @@ const BottomTabNavigator = () => {
       <BottomTab.Navigator
         screenOptions={({ route }) => ({
           tabBarActiveTintColor: "#59C1CC",
-          tabBarInactiveTintColor: "gray"
+          tabBarInactiveTintColor: "gray",
         })}
       >
-
-      <BottomTab.Screen name="Main" component={MainScreen} />
+        <BottomTab.Screen name="Main" component={MainScreen} />
         <BottomTab.Screen
           name="ThreeCardsReading"
           component={ThreeCardsReadingScreen}
+          listeners={() => ({
+            tabPress: (e) => {
+              // Prevent default action
+              e.preventDefault();
+
+              // Do something with the `navigation` object
+              navigation.navigate("ThreeCardsReading"); // Here!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            },
+          })}
         />
         <BottomTab.Screen name="Journal" component={JournalEntriesScreen} />
         <BottomTab.Screen name="Learning" component={LearningScreen} />

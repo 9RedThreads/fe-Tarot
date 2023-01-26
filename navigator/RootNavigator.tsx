@@ -6,8 +6,7 @@ import OneCardReadingScreen from "../Screens/OneCardReadingScreen";
 
 export type RootStackParamList = {
   BottomTabNavigator: undefined;
-  Main: undefined;
-  ThreeCardsReading: undefined;
+  ThreeCardsReading:undefined;
   OneCardReading: undefined;
   Auth: undefined;
 };
