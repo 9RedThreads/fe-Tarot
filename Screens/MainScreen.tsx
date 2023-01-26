@@ -20,7 +20,7 @@ const navigation = useNavigation<MainScreenNavigation>();
 const LoginButton = () => {
   return (
     <TouchableOpacity onPress={() => navigation.navigate("Auth")}>
-      <Text>Login / SignIn ( click me HELLOGOGOGOG)</Text>
+      <Text>Login / SignIn ( click me HELLOGOGOGOGgjgnierngunergn)</Text>
     </TouchableOpacity>
   );
 };
