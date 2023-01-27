@@ -60,6 +60,9 @@ const EntryForm = ()=> (
         onChangeText={setEntry}
         value={entry}
       />
+      
+ {/* onPress just console logs entry but entry changes state as you type would likely need another function on onPress to post new entry     */}
+
 <Button title="Submit Entry" onPress={ () => { console.log(entry)}}
 />
 </View>
