@@ -1,3 +1,4 @@
+import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Text, View, TouchableOpacity } from "react-native";
 import MyJournalScreen from "../Screens/MyJournalScreen";
@@ -5,9 +6,16 @@ import MyJournalScreen from "../Screens/MyJournalScreen";
 type NavigateToJournalEntriesProp =
   NativeStackNavigationProp<RootStackParamList>;
 
-const SimpleJournalCard = ({currentDaysInMonth}) => {
-
+const SimpleJournalCard = (
+  { currentDaysInMonth },
+  { currentYear },
+  { currentMonth }
+  //erroring when sending over these props
+ 
+  
+) => {
   const navigation = useNavigation<NavigateToJournalEntriesProp>();
+  const testword = 'spider'
 
   const arrOfDays = [];
   {
@@ -16,12 +24,16 @@ const SimpleJournalCard = ({currentDaysInMonth}) => {
     }
   }
 
-  return(arrOfDays.map((date) => {
-    return(
-    <TouchableOpacity key={date} onPress={() => navigation.navigate("JournalEntries")}> 
-    <Text className="w-20 h-20 border m-1 p-1 justify-center bg-white" >{date}</Text>
-    </TouchableOpacity>)
-  }));
+  return arrOfDays.map((dayNum) => {
+    return (
+      <TouchableOpacity
+        key={`${dayNum}`}
+        onPress={() => navigation.navigate("JournalEntries")}
+      >
+        <Text className="w-20 h-20 border m-1 p-1 justify-center bg-white rounded">{`${dayNum} ${testword}`}</Text>
+      </TouchableOpacity>
+    );
+  });
 };
 
 export default SimpleJournalCard;

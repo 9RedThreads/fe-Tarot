@@ -4,12 +4,12 @@ import SimpleJournalCard from "../Components/SimpleJournalCard";
 
 const MyJournalScreen = ({ month }) => {
   const monthAsNumber = new Date().getMonth();
-  const currentYear = new Date().getFullYear();
+  // const currentYear = new Date().getFullYear();
 
   function daysInThisMonth() {
     return new Date(currentYear, monthAsNumber, 0).getDate();
   }
-    
+
   const months = [
     "January",
     "February",
@@ -24,14 +24,21 @@ const MyJournalScreen = ({ month }) => {
     "November",
     "December",
   ];
+  const year =  new Date().getFullYear()
+  const [currentYear, setCurrentYear] = useState(year.toString());
   const [currentDaysInMonth, setCurrentDaysInMonth] = useState(daysInThisMonth);
   const [currentMonth, setCurrentMonth] = useState(months[monthAsNumber]);
+  console.log(currentYear)
 
   return (
     <ScrollView>
-      <Text className="border">{currentMonth}</Text>
+      <Text className="border">{`${currentMonth} ${currentYear} `}</Text>
       <View className="border flex-row flex-wrap justify-evenly">
-        <SimpleJournalCard currentDaysInMonth={currentDaysInMonth} />
+        <SimpleJournalCard
+          currentDaysInMonth={currentDaysInMonth}
+          currentMonth={currentMonth}
+          currentYear={currentYear}
+        />
         <TouchableOpacity>
           <Text>Next...</Text>
         </TouchableOpacity>
