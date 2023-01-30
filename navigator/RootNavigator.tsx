@@ -11,6 +11,7 @@ export type RootStackParamList = {
   ThreeCardsReading:undefined;
   OneCardReading: undefined;
   Auth: undefined;
+  JournalEntries: undefined;
 };
 
 const RootNavigator = () => {
@@ -41,6 +42,13 @@ const RootNavigator = () => {
           <RootStack.Screen
             name="OneCardReading"
             component={OneCardReadingScreen}
+          />
+        </RootStack.Group>
+
+        <RootStack.Group>
+          <RootStack.Screen
+            name="JournalEntries"
+            component={JournalEntriesScreen}
           />
         </RootStack.Group>
       </RootStack.Navigator>
