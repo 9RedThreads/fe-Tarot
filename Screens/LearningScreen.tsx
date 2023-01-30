@@ -182,7 +182,7 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
           },  
           text: {
             fontSize: 14,
-            padding: 40,
+            padding: 10,
           },
           closeText: {
             fontSize: 24,
