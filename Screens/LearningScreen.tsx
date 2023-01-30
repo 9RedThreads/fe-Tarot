@@ -1,13 +1,31 @@
-import { View, Text, TouchableOpacity, StyleSheet, Modal, ScrollView } from 'react-native'
-import React from 'react'
+import { View, Text, TouchableOpacity, StyleSheet, Modal, ScrollView, Image, FlatList } from 'react-native'
+import React, { useState } from 'react'
+import axios from 'axios';
+import { sidsInfo } from '../Tarot-cards/sids-cards';
+
+
 
 const LearningScreen = () => {
 
+
   const [useApp, setUseApp] = React.useState(false);
   const [howTarot, setHowTarot] = React.useState(false);
+  const [imagePressed, setImagePressed] = React.useState(false);
+  const [selectedCard, setSelectedCard]: any = React.useState("");
+  const [arcanas, setAcana] = React.useState("");
+  const [data, setData] = React.useState(sidsInfo);
+  
+
 
   return(
+
+   
+
     <View style = { styles.container }>
+ 
+
+
+
 
 <Modal
             animationType = {"slide"}
@@ -76,16 +94,82 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
               setHowTarot(true);
             }}>
             <Text >How to do a Tarot reading</Text>
-        </TouchableOpacity>        
+        </TouchableOpacity>   
+
+<Text style = {styles.text}>Select Acana </Text>
+        <TouchableOpacity
+            style={styles.button2}
+            onPress={() => {{
+              setAcana("Minor Arcana");
+            }; setData(sidsInfo.filter(indCard => indCard.arcana === "Minor Arcana"))}}>
+            <Text >Minor</Text>
+        </TouchableOpacity>   
+
+        <TouchableOpacity
+            style={styles.button2}
+            onPress={() => {{
+              setAcana("Major Arcana");
+            }; setData(sidsInfo.filter(indCard => indCard.arcana === "Major Arcana"))}}>
+            <Text >Major</Text>
+        </TouchableOpacity>   
+
+        <TouchableOpacity
+            style={styles.button2}
+            onPress={() => {{
+              setAcana("");
+            }; setData(sidsInfo)}}>
+            <Text >Clear</Text>
+        </TouchableOpacity>  
+
+      
+        <FlatList
+        data={data
+        }
+        renderItem={({item}) => {
+       
+        return  <TouchableOpacity onPress={() =>{{setImagePressed(true); setSelectedCard(item)}}}>
+          <Image  style={styles.images} source = {item.image}/>
+          </TouchableOpacity>
+         
+       }}
+      />
+
+<Modal animationType = {"slide"}
+    transparent={false}
+    visible={imagePressed}
+    >
+<ScrollView>
+  <Image style = {styles.images} source = {selectedCard.image}/>
+              <Text style = { styles.text }>
+                   Name : {selectedCard.name}  
+                    Number: {selectedCard.number} 
+        Arcana: {selectedCard.arcana},
+         Suit: {selectedCard.suit},
+         Elemental: {selectedCard.Elemental}
+        
+
+
+                  </Text>
+                  </ScrollView>
+                  <Text style={styles.closeText}
+  onPress={() => {
+    setImagePressed(!imagePressed);}
+  }> Close Card </Text>
+
+    </Modal>
+   
       </View>
     );
+
+   
 
         }
 
         const styles = StyleSheet.create({
           container: {
-            padding: 15,
-            flex: 1,
+            padding: 10,
+            flexWrap: 'nowrap',
+            
        
           },
           button: {
@@ -97,15 +181,30 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
             backgroundColor: '#2AC062',
           },  
           text: {
-            fontSize: 12,
-            marginBottom: 30,
+            fontSize: 14,
             padding: 40,
           },
           closeText: {
             fontSize: 24,
             color: '#00479e',
             textAlign: 'center',
+          },
+          images: {
+            height: 160,
+            width: 90,
+            alignItems: 'center',
+         
+          
+          },
+          button2:{
+            display: 'flex',
+            height: 30,
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '30%',
+            backgroundColor: '#ADD8E6',
           }
+          
         });
 
 export default LearningScreen
