@@ -6,45 +6,46 @@ import OneCardReadingScreen from "../Screens/OneCardReadingScreen";
 import JournalEntriesScreen from '../Screens/JournalEntriesScreen';
 
 
+
 export type RootStackParamList = {
   BottomTabNavigator: undefined;
-  ThreeCardsReading:undefined;
+  ThreeCardsReading: undefined;
   OneCardReading: undefined;
-  Auth: undefined;
+  Auth: { isLogout: boolean };
 };
 
 const RootNavigator = () => {
 
-    const RootStack = createNativeStackNavigator<RootStackParamList>();
+  const RootStack = createNativeStackNavigator<RootStackParamList>();
 
-    return (
-      <RootStack.Navigator>
-        <RootStack.Group>
-          <RootStack.Screen
-            name="BottomTabNavigator"
-            component={BottomTabNavigator}
-          />
-        </RootStack.Group>
+  return (
+    <RootStack.Navigator>
+      <RootStack.Group>
+        <RootStack.Screen
+          name="BottomTabNavigator"
+          component={BottomTabNavigator}
+        />
+      </RootStack.Group>
 
-        <RootStack.Group>
-          <RootStack.Screen name="Auth" component={AuthScreen} />
-        </RootStack.Group>
+      <RootStack.Group>
+        <RootStack.Screen name="Auth" component={AuthScreen} />
+      </RootStack.Group>
 
-        <RootStack.Group>
-          <RootStack.Screen
-            name="ThreeCardsReading"
-            component={ThreeCardsReadingScreen}
-          />
-        </RootStack.Group>
+      <RootStack.Group>
+        <RootStack.Screen
+          name="ThreeCardsReading"
+          component={ThreeCardsReadingScreen}
+        />
+      </RootStack.Group>
 
-        <RootStack.Group>
-          <RootStack.Screen
-            name="OneCardReading"
-            component={OneCardReadingScreen}
-          />
-        </RootStack.Group>
-      </RootStack.Navigator>
-    );
+      <RootStack.Group>
+        <RootStack.Screen
+          name="OneCardReading"
+          component={OneCardReadingScreen}
+        />
+      </RootStack.Group>
+    </RootStack.Navigator>
+  );
 };
 
 export default RootNavigator;
