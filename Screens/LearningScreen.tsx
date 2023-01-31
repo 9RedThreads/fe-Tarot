@@ -14,18 +14,11 @@ const LearningScreen = () => {
   const [selectedCard, setSelectedCard]: any = React.useState("");
   const [arcanas, setAcana] = React.useState("");
   const [data, setData] = React.useState(sidsInfo);
-  
 
 
   return(
-
-   
-
     <View style = { styles.container }>
  
-
-
-
 
 <Modal
             animationType = {"slide"}
@@ -193,6 +186,8 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
        
         return  <TouchableOpacity onPress={() =>{{setImagePressed(true); setSelectedCard(item)}}}>
           <Image  style={styles.images} source = {item.image}/>
+
+          
           </TouchableOpacity>
          
        }}
