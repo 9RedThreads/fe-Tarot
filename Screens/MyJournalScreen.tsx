@@ -3,13 +3,16 @@ import { useState } from "react";
 import SimpleJournalCard from "../Components/SimpleJournalCard";
 
 const MyJournalScreen = ({ month }) => {
-  const monthAsNumber = new Date().getMonth();
-  const currentYear = new Date().getFullYear();
+  const [monthAsNumber, setMonthAsNumber] = useState(new Date().getMonth());
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+  const [currentDaysInMonth, setCurrentDaysInMonth] = useState(daysInThisMonth);
+  const [currentMonth, setCurrentMonth] = useState(months[monthAsNumber]);
 
+  
   function daysInThisMonth() {
     return new Date(currentYear, monthAsNumber, 0).getDate();
   }
-    
+  
   const months = [
     "January",
     "February",
@@ -24,20 +27,39 @@ const MyJournalScreen = ({ month }) => {
     "November",
     "December",
   ];
-  const [currentDaysInMonth, setCurrentDaysInMonth] = useState(daysInThisMonth);
-  const [currentMonth, setCurrentMonth] = useState(months[monthAsNumber]);
+  
+
+  function rollMonthBack() {
+    monthAsNumber > 0
+      ? //note: January = 0, December = 11
+       
+        ((setMonthAsNumber(monthAsNumber - 1),
+        setCurrentDaysInMonth(daysInThisMonth)))
+      : (setCurrentYear(currentYear - 1),
+        setCurrentMonth(months[monthAsNumber]),
+        setMonthAsNumber(monthAsNumber + 11));
+
+    console.log(monthAsNumber);
+    console.log(currentMonth);
+    console.log(currentYear);
+  }
 
   return (
     <ScrollView>
-      <Text className="border">{currentMonth}</Text>
+      <Text className="border">{`${currentMonth} ${currentYear}       /// ${monthAsNumber} <<this is the month num`}</Text>
       <View className="border flex-row flex-wrap justify-evenly">
-        <SimpleJournalCard currentDaysInMonth={currentDaysInMonth} />
-        <TouchableOpacity>
-          <Text>Next...</Text>
+        <TouchableOpacity onPress={rollMonthBack}>
+          <Text className="w-20 h-20 border m-1 p-1 justify-center bg-yellow-100 rounded">
+            Previous..
+          </Text>
         </TouchableOpacity>
+        <SimpleJournalCard
+          currentDaysInMonth={currentDaysInMonth}
+          currentMonth={currentMonth}
+          currentYear={currentYear}
+        />
       </View>
     </ScrollView>
-    //on Monday work on this so on press of next rerenders month new month, changes setsCurrentMonthetc
   );
 };
 
