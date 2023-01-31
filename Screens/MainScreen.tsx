@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { Component, useEffect, useState } from "react";
 import { ScrollView, Text, TouchableOpacity, Button, Image } from "react-native";
 import {
   useNavigation,
@@ -12,7 +12,7 @@ import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import React from "react";
 import { styled } from "nativewind";
 import JournalPreview from "../Components/JournalPreview";
-
+import {getEntries} from "../utils"
 type MainScreenNavigation = CompositeNavigationProp<
   BottomTabNavigationProp<BottomTabStackParamList>,
   NativeStackNavigationProp<RootStackParamList>
@@ -20,6 +20,17 @@ type MainScreenNavigation = CompositeNavigationProp<
 
 const MainScreen = () => {
   const navigation = useNavigation<MainScreenNavigation>();
+
+const [user, setUser] = useState("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Impjc2hlYXJvbkBob3RtYWlsLmNvLnVrIiwidXNlcklkIjoiOSIsImlhdCI6MTY3NTE2NTcyNSwiZXhwIjoxNjkwNzE3NzI1fQ.1_4GgiRnXm3RMxVG7IZ4CeSS5ypIar3FmF-HfC0FQvM")
+const [entries, setEntries] = useState([])
+  
+  useEffect(() => {
+    getEntries(user).then((entries) => {
+      setEntries(entries);
+    });
+  }, []);
+
+
 
   return (
     <ScrollView>
@@ -37,7 +48,7 @@ const MainScreen = () => {
         title="3 Card Reading"
         onPress={() => navigation.navigate("ThreeCardsReading")}
       ></Button>
-      <JournalPreview></JournalPreview>
+      <JournalPreview entries={entries} />
     </ScrollView>
   );
 };

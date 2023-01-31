@@ -1,5 +1,5 @@
 import { View, Text, ScrollView, TouchableOpacity } from "react-native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SimpleJournalCard from "../Components/SimpleJournalCard";
 
 const MyJournalScreen = ({ month }) => {
@@ -9,6 +9,8 @@ const MyJournalScreen = ({ month }) => {
   function daysInThisMonth() {
     return new Date(currentYear, monthAsNumber, 0).getDate();
   }
+
+
     
   const months = [
     "January",

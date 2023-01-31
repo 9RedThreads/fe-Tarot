@@ -1,6 +1,7 @@
 node_modules/
 .expo/
 dist/
+Spike.jsx
 npm-debug.*
 *.jks
 *.p8
