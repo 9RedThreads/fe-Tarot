@@ -30,17 +30,17 @@ const MyJournalScreen = ({ month }) => {
   const [currentMonth, setCurrentMonth] = useState(months[monthAsNumber]);
 
   function rollMonthBack() {
-   
     monthAsNumber > 0
-      ? (setMonthAsNumber(monthAsNumber-1),
-        setCurrentDaysInMonth(daysInThisMonth))
-      : setMonthAsNumber(monthAsNumber + 11),
-      (setCurrentYear(currentYear - 1), setCurrentMonth(months[monthAsNumber]));
+      //note: January = 0, December = 11
+      ? (setMonthAsNumber(monthAsNumber - 1),
+        setCurrentDaysInMonth(daysInThisMonth),
+        setCurrentMonth(months[monthAsNumber]))
+      : (setMonthAsNumber(monthAsNumber + 11),
+      setCurrentYear(currentYear - 1), setCurrentMonth(months[monthAsNumber]));
 
-     console.log(monthAsNumber);
-     console.log(currentMonth);
-     console.log(currentYear);
-
+    console.log(monthAsNumber);
+    console.log(currentMonth);
+    console.log(currentYear);
   }
 
   return (
