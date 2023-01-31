@@ -3,7 +3,7 @@ import { useState } from "react";
 import SimpleJournalCard from "../Components/SimpleJournalCard";
 
 const MyJournalScreen = ({ month }) => {
-  const monthAsNumber = new Date().getMonth();
+  const [monthAsNumber, setMonthAsNumber] = useState(new Date().getMonth());
   // const currentYear = new Date().getFullYear();
 
   function daysInThisMonth() {
@@ -24,27 +24,41 @@ const MyJournalScreen = ({ month }) => {
     "November",
     "December",
   ];
-  const year =  new Date().getFullYear()
-  const [currentYear, setCurrentYear] = useState(year.toString());
+
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
   const [currentDaysInMonth, setCurrentDaysInMonth] = useState(daysInThisMonth);
   const [currentMonth, setCurrentMonth] = useState(months[monthAsNumber]);
-  console.log(currentYear)
+
+  function rollMonthBack() {
+   
+    monthAsNumber > 0
+      ? (setMonthAsNumber(monthAsNumber-1),
+        setCurrentDaysInMonth(daysInThisMonth))
+      : setMonthAsNumber(monthAsNumber + 11),
+      (setCurrentYear(currentYear - 1), setCurrentMonth(months[monthAsNumber]));
+
+     console.log(monthAsNumber);
+     console.log(currentMonth);
+     console.log(currentYear);
+
+  }
 
   return (
     <ScrollView>
       <Text className="border">{`${currentMonth} ${currentYear} `}</Text>
       <View className="border flex-row flex-wrap justify-evenly">
+        <TouchableOpacity onPress={() => rollMonthBack()}>
+          <Text className="w-20 h-20 border m-1 p-1 justify-center bg-yellow-100 rounded">
+            Previous..
+          </Text>
+        </TouchableOpacity>
         <SimpleJournalCard
           currentDaysInMonth={currentDaysInMonth}
           currentMonth={currentMonth}
           currentYear={currentYear}
         />
-        <TouchableOpacity>
-          <Text>Next...</Text>
-        </TouchableOpacity>
       </View>
     </ScrollView>
-    //on Monday work on this so on press of next rerenders month new month, changes setsCurrentMonthetc
   );
 };
 

@@ -7,33 +7,33 @@ type NavigateToJournalEntriesProp =
   NativeStackNavigationProp<RootStackParamList>;
 
 const SimpleJournalCard = (
-  { currentDaysInMonth },
-  { currentYear },
-  { currentMonth }
-  //erroring when sending over these props
+  { currentDaysInMonth, currentYear, currentMonth },
  
-  
-) => {
-  const navigation = useNavigation<NavigateToJournalEntriesProp>();
-  const testword = 'spider'
+) =>
+  //erroring when sending over these props
 
-  const arrOfDays = [];
   {
-    for (let i = 1; i <= currentDaysInMonth; i++) {
-      arrOfDays.push(i);
-    }
-  }
+    const navigation = useNavigation<NavigateToJournalEntriesProp>();
+    const testword = "spider";
 
-  return arrOfDays.map((dayNum) => {
-    return (
-      <TouchableOpacity
-        key={`${dayNum}`}
-        onPress={() => navigation.navigate("JournalEntries")}
-      >
-        <Text className="w-20 h-20 border m-1 p-1 justify-center bg-white rounded">{`${dayNum} ${testword}`}</Text>
-      </TouchableOpacity>
-    );
-  });
-};
+    const arrOfDays = [];
+    {
+      for (let i = 1; i <= currentDaysInMonth; i++) {
+        arrOfDays.push(i);
+      }
+    }
+
+    return arrOfDays.map((dayNum) => {
+      return (
+        <TouchableOpacity
+          key={`${dayNum}/${currentMonth}/${currentYear}`}
+          //current key ID format is '31/January/2023 - change as needed
+          onPress={() => navigation.navigate("JournalEntries")}
+        >
+          <Text className="w-20 h-20 border m-1 p-1 justify-center bg-white rounded">{`${dayNum}`}</Text>
+        </TouchableOpacity>
+      );
+    });
+  };
 
 export default SimpleJournalCard;
