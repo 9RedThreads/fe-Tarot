@@ -3042,7 +3042,7 @@ export const sidsInfo =  [
 	  "Questions to Ask" : ["How can you get more financial or sexual experience without risking your livelihood or health?","How might hands-on learning play a role in your situation?","What's the most practical choice you could make?"]
     },
     {
-        image: require('./card-img/p12.jpg'),
+       image: require('./card-img/p12.jpg'),
       "name": "Knight of Pentacles",
       "number": "12",
       "arcana": "Minor Arcana",
