@@ -8,18 +8,18 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 type NavigateToJournalEntriesProp =
   NativeStackNavigationProp<RootStackParamList>;
 
-const JournalPreviewCard = ({ recentJournal }: Props) => {
+const JournalPreviewCard = ({ entry }: Props) => {
   const navigation = useNavigation<NavigateToJournalEntriesProp>();
 
   return (
     <View>
-      <Text
+      <Text className="bg-gray-400 rounded-xl shadow-lg"
         onPress={() => {
-          navigation.navigate("JournalEntries");
+          navigation.navigate("JournalEntries", {entry: entry});
         }}
       >
         Journal Preview Card from 
-        {recentJournal.created_at}-{recentJournal.journalBody}
+        {entry.created_at}-{entry.journalBody}
       </Text>
     </View>
   );
