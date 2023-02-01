@@ -39,7 +39,7 @@ const [cardTwo, setCardTwo] = React.useState(sidsInfo[Math.floor(Math.random() *
 const [cardThree, setCardThree] = React.useState(sidsInfo[Math.floor(Math.random() * sidsInfo.length)])
 
 const [imagePressed, setImagePressed] = React.useState(false);
-const [selectedCard, setSelectedCard] = React.useState({});
+const [selectedCard, setSelectedCard] = React.useState(cardOne);
 
 
 const [cardOneImage, setCardOneImage ] = React.useState(
@@ -184,7 +184,7 @@ const ShowThreeCard = () =>(
     visible={imagePressed}
     >
 <ScrollView>
-  <Image style = {styles.images} source = {cardOne.image}/>
+  <Image style = {styles.images} source = {selectedCard.image}/>
               <Text >
                    Name : {selectedCard.name}  
                     Number: {selectedCard.number} 
@@ -192,6 +192,12 @@ const ShowThreeCard = () =>(
          Suit: {selectedCard.suit},
          Elemental: {selectedCard.Elemental}
 
+         {isLightCardOne && selectedCard === cardOne? "Description:" + selectedCard.meanings.light: null}
+       {!isLightCardOne  && selectedCard === cardOne? "Description:" + selectedCard.meanings.shadow: null}
+       {isLightCardTwo && selectedCard === cardTwo? "Description:" + selectedCard.meanings.light: null}
+       {!isLightCardTwo  && selectedCard === cardTwo? "Description:" + selectedCard.meanings.shadow: null}
+       {isLightCardThree  && selectedCard === cardThree? "Description:" + selectedCard.meanings.light: null}
+       {!isLightCardThree && selectedCard === cardThree? "Description:" +  selectedCard.meanings.shadow + "": null}
 
       
                   </Text>
