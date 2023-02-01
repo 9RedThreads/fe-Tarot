@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { ScrollView, Text, TouchableOpacity, Button, Image } from "react-native";
+import { ScrollView, Text, TouchableOpacity, Button, Image, View, ImageBackground } from "react-native";
 import {
   useNavigation,
   CompositeNavigationProp,
@@ -13,6 +13,11 @@ import React from "react";
 import { styled } from "nativewind";
 import JournalPreview from "../Components/JournalPreview";
 
+const StyledText = styled(Text);
+const StyledView = styled(View);
+const StyledImage = styled(Image);
+
+
 type MainScreenNavigation = CompositeNavigationProp<
   BottomTabNavigationProp<BottomTabStackParamList>,
   NativeStackNavigationProp<RootStackParamList>
@@ -22,21 +27,30 @@ const MainScreen = () => {
   const navigation = useNavigation<MainScreenNavigation>();
 
   return (
-    <ScrollView>
-      <Text>Tarrot App Main Screen</Text>
+    <ScrollView className="bg-darkGrey p-3 m-3 rounded-md bg-origin-padding border-darkGrey">
+      <Text className="text-lightGrey font-{Georgia} text-lg">Tarot Journal</Text>
       <TouchableOpacity onPress={() => navigation.navigate("Auth")}>
         <Text>Login / SignIng ( click me)</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate("OneCardReading")}>
-        <Image
-          onPress={() => navigation.navigate("ThreeCardsReading")}
-          source={require("../Tarot-cards/card-img/backOfCardsTestImage.jpg")}
-        />
+      <TouchableOpacity onPress={() => navigation.navigate("OneCardReading")
+    }
+    tw="w-80 h-50 object-contain"
+      >
+        <StyledImage
+        tw="self-center object-contain w-80 h-auto resizeMode-contain"
+          source={require("../colourPalleteIdeas/backCard.png")}
+          />
+        <StyledText
+        className="text-center bg-red rounded-md w-80 self-center p-3 m-3"
+        >Daily Card Reading</StyledText>
       </TouchableOpacity>
-      <Button
-        title="3 Card Reading"
-        onPress={() => navigation.navigate("ThreeCardsReading")}
-      ></Button>
+
+      <TouchableOpacity onPress={() => navigation.navigate("ThreeCardsReading")}
+      > 
+      <StyledText className="text-center bg-red rounded-md w-80 self-center p-3 m-3">
+        Three Card Reading
+      </StyledText>
+      </TouchableOpacity>
       <JournalPreview></JournalPreview>
     </ScrollView>
   );

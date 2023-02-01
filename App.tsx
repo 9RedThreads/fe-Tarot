@@ -1,4 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native";
+import { withExpoSnack } from "nativewind";
 import React from "react";
 import RootNavigator from "./navigator/RootNavigator";
 
@@ -10,4 +11,4 @@ function App() {
   )
 }
 
-export default App;
+export default withExpoSnack(App);
