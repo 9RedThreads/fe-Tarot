@@ -12,9 +12,9 @@ const JournalEntriesScreen = ({route}) => {
 
   return (
     <ScrollView className='flex flex-col-3 flex-rows-3 gap-5' >
-      <Text className='text-green-500 col-span-full'>{entry.created_at}</Text>
+      <Text className='text-tRed col-span-full'>{entry.created_at}</Text>
         {cardInfo.map((card)=> {
-          return <Image className={`col-span-${imagePosition++} row-span-2 w-full`} key={card.id} source={sidsInfo[card.id].image}/>
+          return <Image className={`flex col-span-${imagePosition++} row-span-2`} key={card.id} source={sidsInfo[card.id].image}/>
         })}
       <TextInput 
       className=' col-span-full'
