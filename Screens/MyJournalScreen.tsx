@@ -1,6 +1,7 @@
 import { View, Text, ScrollView, TouchableOpacity } from "react-native";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import SimpleJournalCard from "../Components/SimpleJournalCard";
+import EntriesContext from "../store/entriesContext";
 
 const months = [
   "January",
@@ -23,6 +24,10 @@ const MyJournalScreen = ({ month }) => {
   const [currentDaysInMonth, setCurrentDaysInMonth] = useState(daysInThisMonth);
   const [currentMonth, setCurrentMonth] = useState(months[monthAsNumber]);
   const [viewingCurrentMonth, setViewingCurrentMonth] = useState(true);
+  const entryContext = useContext(EntriesContext);
+  useEffect(() => {
+    console.log(entryContext.entries, '<<entries from myjounalscreen')
+  }, []);
 
   function daysInThisMonth() {
     return new Date(currentYear, monthAsNumber + 1, 0).getDate();
@@ -39,8 +44,7 @@ const MyJournalScreen = ({ month }) => {
 
   function goForwardAMonth() {
     monthAsNumber < 11
-      ? //note: January = 0, December = 11
-        setMonthAsNumber(monthAsNumber + 1)
+      ? setMonthAsNumber(monthAsNumber + 1)
       : (setMonthAsNumber(monthAsNumber - 11), setCurrentYear(currentYear + 1));
   }
 
