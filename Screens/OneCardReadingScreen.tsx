@@ -2,10 +2,11 @@ import { View, Text, TextInput, Button,StyleSheet, TouchableOpacity, Image, Scro
 import React from 'react'
 import { sidsInfo } from '../Tarot-cards/sids-cards'
 import axios from 'axios'
+import { styled } from 'nativewind';
 
-
-
-  
+const StyledView = styled(View)
+const StyledText = styled(Text)
+const StyledImage = styled(Image)
 
 const OneCardReadingScreen = () => {
 
@@ -31,6 +32,8 @@ const [imagePressed, setImagePressed] = React.useState(false);
 const [selectedCard, setSelectedCard] = React.useState(cardOne);
 const [isLightCardOne, setIsLightCardOne] = React.useState(Math.random() < 0.5);
 const [readingCardOne, setReadingCardOne] = React.useState('');
+const [questionToAsk, setQuestionToAsk] = React.useState(cardOne["Questions to Ask"][Math.floor(Math.random() * cardOne["Questions to Ask"].length)]);
+
 
 
 const postEntry = (postBody: any) => {
@@ -93,13 +96,15 @@ const ShowSingleCard = () =>(
  
 
 <ShowSingleCard/> 
+<Text>{questionToAsk} </Text>
 
-    <Text>Please type your diary entry</Text>
+    <Text className='text-xl text-300'>Please type your diary entry</Text>
     <TextInput 
            placeholder="Please type your diary entry here"
             style={styles.input}
             onChangeText={setEntry}
             value={entry}
+            className='h-60 w-70 p-1 border-8  rounded-md bg-300'
           />
 
       {/* onPress just console logs entry but entry changes state as you type would likely need another function on onPress to post new entry     */}

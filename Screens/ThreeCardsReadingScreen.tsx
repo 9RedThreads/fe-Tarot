@@ -3,9 +3,15 @@ import { View, Text, TextInput, StyleSheet, Button, Image, ScrollView, Touchable
 import React from 'react'
 import { sidsInfo } from '../Tarot-cards/sids-cards';
 import axios from 'axios';
-
+import { styled } from 'nativewind';
 
 const ThreeCardsReadingScreen = () => {
+
+  const StyledView = styled(View)
+const StyledText = styled(Text)
+const StyledImage = styled(Image)
+const StyledScrollView = styled(ScrollView)
+const StyledButton = styled(Button)
 
 const styles = StyleSheet.create({
   input: {
@@ -133,29 +139,32 @@ const ReadingStyle = () =>(
 
 
 const ShowThreeCard = () =>(
-<ScrollView>
+
+
+<StyledScrollView>
     {cardOneImage}
     {cardTwoImage}
     {cardThreeImage}
-</ScrollView>
+</StyledScrollView>
 
 
 )
   return (
+<View className='bg-slate-100'>
+
 
 <ScrollView> 
   
 
       <View>
-      <Text>ThreeCardsReadingScreen</Text>
 
       <TextInput 
        placeholder="Please type your intention here..."
-        style={styles.input}
         onChangeText={setIntention}
         value={intention}
+        className = "bg-cyan-100 border-2 border-orange-700 text-black rounded-lg h-16 m-3 p-2"
       />
-<Button title="Submit Intention" onPress={ () => {setIntentionPressed(true)}}
+<StyledButton className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' title="Submit Intention" onPress={ () => {setIntentionPressed(true)}}
 />
 </View>
 
@@ -173,6 +182,7 @@ const ShowThreeCard = () =>(
         style={styles.input}
         onChangeText={setEntry}
         value={entry}
+        className = "bg-cyan-100 border-2 border-orange-700 text-black rounded-lg h-16 m-3 p-2"
       />
 <Button title="Submit Entry" onPress={handleSubmit}
 />
@@ -207,9 +217,10 @@ const ShowThreeCard = () =>(
 
       <TextInput 
        placeholder="Please type your diary here..."
-        style={styles.input}
+        
         onChangeText={setEntry}
         value={entry}
+        className = "bg-cyan-100 border-2 border-orange-700 text-black rounded-lg h-16 m-3 p-2"
       />
 <Button title="Submit Entry" onPress={handleSubmit}
 />
@@ -227,7 +238,7 @@ const ShowThreeCard = () =>(
 
     </ScrollView>
   
-    
+    </View>
   )
 }
 
