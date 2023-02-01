@@ -22,6 +22,7 @@ const MyJournalScreen = ({ month }) => {
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
   const [currentDaysInMonth, setCurrentDaysInMonth] = useState(daysInThisMonth);
   const [currentMonth, setCurrentMonth] = useState(months[monthAsNumber]);
+  const [viewingCurrentMonth, setViewingCurrentMonth] = useState(true);
 
   function daysInThisMonth() {
     return new Date(currentYear, monthAsNumber + 1, 0).getDate();
@@ -41,35 +42,43 @@ const MyJournalScreen = ({ month }) => {
       : (setMonthAsNumber(monthAsNumber - 11), setCurrentYear(currentYear + 1));
   }
 
-  function areWeOnThisMonth(monthAsNumber, currentYear) {
+  function areWeOnThisMonth(monthAsNumber: number, currentYear: number) {
     monthAsNumber === new Date().getMonth() &&
     currentYear === new Date().getFullYear()
-      ? "yes"
-      : "no";
+      ? setViewingCurrentMonth(true)
+      : setViewingCurrentMonth(false);
   }
 
   useEffect(() => {
     setCurrentDaysInMonth(daysInThisMonth);
     setCurrentMonth(months[monthAsNumber]);
+    areWeOnThisMonth(monthAsNumber, currentYear);
   }, [monthAsNumber]);
 
   return (
     <ScrollView>
-      <Text className="border">{`${currentMonth} ${currentYear} ${areWeOnThisMonth(
-        monthAsNumber,
-        currentYear
-      )}`}</Text>
+      <Text className="border">{`${currentMonth} ${currentYear} `}</Text>
       <View className="border flex-row flex-wrap justify-evenly">
         <TouchableOpacity onPress={goBackAMonth}>
           <Text className="w-20 h-20 border m-1 p-1 justify-center bg-yellow-100 rounded">
             Previous..
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={goForwardAMonth}>
-          <Text className="w-20 h-20 border m-1 p-1 justify-center bg-yellow-100 rounded">
+
+        {viewingCurrentMonth === true ? (
+          <Text className="w-20 h-20 border m-1 p-1 justify-center bg-white-100 rounded">
             Next..
           </Text>
-        </TouchableOpacity>
+        ) : (
+          <TouchableOpacity onPress={goForwardAMonth}>
+            <TouchableOpacity onPress={goForwardAMonth}>
+              <Text className="w-20 h-20 border m-1 p-1 justify-center bg-yellow-100 rounded">
+                Next..
+              </Text>
+            </TouchableOpacity>
+          </TouchableOpacity>
+        )}
+
         <SimpleJournalCard
           currentDaysInMonth={currentDaysInMonth}
           currentMonth={currentMonth}
