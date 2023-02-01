@@ -11,6 +11,7 @@ const SimpleJournalCard = ({
   currentDaysInMonth,
   currentYear,
   currentMonth,
+  monthAsNumber
 }) => {
   const entryContext = useContext(EntriesContext);
   const navigation = useNavigation<NavigateToJournalEntriesProp>();
@@ -22,11 +23,24 @@ const SimpleJournalCard = ({
     }
   }
 
+  console.log(entryContext.entries, "entryContext");
+
+  // function iterateJounalEntries(dayNum) {
+  //   entryContext.entries.filter((entry) => {
+  //     console.log(entry.created_at.slice(0, 4) === dayNum)
+  //     return entry.created_at.slice(0, 4) === dayNum
+  //  })
+  // }
+
+  // const year = date.slice(0, 4);
+  // const month = date.slice(5, 7);
+  // const day = date.slice(8, 10);
+
   return arrOfDays.map((dayNum) => {
     return (
       <TouchableOpacity
-        key={`${currentYear}-${currentMonth}/${dayNum}`}
-        //current key ID format is '31/January/2023 - change as needed
+        // key={`${currentYear}-${monthAsNumber +1}-${iterateJounalEntries(dayNum)}`}
+        //current key ID format is '2023-02-01' - change as needed
         onPress={() => navigation.navigate("JournalEntries")}
       >
         <Text className="w-20 h-20 border m-1 p-1 justify-center bg-white rounded">{`${dayNum}`}</Text>

@@ -25,9 +25,9 @@ const MyJournalScreen = ({ month }) => {
   const [currentMonth, setCurrentMonth] = useState(months[monthAsNumber]);
   const [viewingCurrentMonth, setViewingCurrentMonth] = useState(true);
   const entryContext = useContext(EntriesContext);
-  useEffect(() => {
-    console.log(entryContext.entries, '<<entries from myjounalscreen')
-  }, []);
+  // useEffect(() => {
+  //   console.log(entryContext.entries, '<<entries from myjounalscreen')
+  // }, []);
 
   function daysInThisMonth() {
     return new Date(currentYear, monthAsNumber + 1, 0).getDate();
@@ -89,6 +89,7 @@ const MyJournalScreen = ({ month }) => {
           currentDaysInMonth={currentDaysInMonth}
           currentMonth={currentMonth}
           currentYear={currentYear}
+          monthAsNumber={monthAsNumber}
         />
       </View>
     </ScrollView>
