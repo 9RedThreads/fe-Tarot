@@ -23,46 +23,48 @@ const OneCardReadingScreen = () => {
   
     }
   })
-  const [intention, setIntention] = React.useState('');
+  const [intention, setIntention] = React.useState('oneCard');
   const [entry, setEntry] = React.useState('');
   const [intentionPressed, setIntentionPressed] = React.useState(false);
   const [cardOne, setCardOne] = React.useState(sidsInfo[Math.floor(Math.random() * sidsInfo.length)])
 const [imagePressed, setImagePressed] = React.useState(false);
 const [selectedCard, setSelectedCard] = React.useState(cardOne);
 const [isLightCardOne, setIsLightCardOne] = React.useState(Math.random() < 0.5);
-
-// const postEntry = (postBody: any) => {
-
-//   const headers = {
-//     'Content-Type': 'application/json',
-//     'Authorization': "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNpZG5leXBpbnNlbnQzQGhvdG1haWwuY28udWsiLCJ1c2VySWQiOiIxMCIsImlhdCI6MTY3NTE3NjI0MywiZXhwIjoxNjkwNzI4MjQzfQ.4vDUWe0Yt2IBUW0XS7qL4I0l1cQW6amcOLEoY0MkvWo"
-//   }
-
-//   axios.post('https://tarot-api-k1ed.onrender.com/api/entries', postBody, {
-
-//   headers: headers
-// })
-// .then((response) => {
-// console.log(response.data, "response.data")
-// console.log(response.data.entries[0].tarot_card_id, "response.data.entries.tarot_card_id")
-
-// })
-// .catch((error) => {
-
-//   console.log(error.response.data, "error.response.data")
-// })
-
-// }
+const [readingCardOne, setReadingCardOne] = React.useState('');
 
 
+const postEntry = (postBody: any) => {
 
-// const handleSubmit = (e: any) => {
-//   e.preventDefault();
+  const headers = {
+    'Content-Type': 'application/json',
+    'Authorization': "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNpZG5leXBpbnNlbnQzQGhvdG1haWwuY28udWsiLCJ1c2VySWQiOiIxMCIsImlhdCI6MTY3NTE3NjI0MywiZXhwIjoxNjkwNzI4MjQzfQ.4vDUWe0Yt2IBUW0XS7qL4I0l1cQW6amcOLEoY0MkvWo"
+  }
 
-//   const postBody = {intention: intention, entry_body: entry, tarot_card_id: [{id: cardOne.name,  isLight: isLightCardOne, readingStyle: readingCardOne }]}
+  axios.post('https://tarot-api-k1ed.onrender.com/api/entries', postBody, {
 
-//   postEntry(postBody)
-// }
+  headers: headers
+})
+.then((response) => {
+console.log(response.data, "response.data")
+console.log(response.data.entries[0].tarot_card_id, "response.data.entries.tarot_card_id")
+
+})
+.catch((error) => {
+
+  console.log(error.response.data, "error.response.data")
+})
+
+}
+
+
+
+const handleSubmit = (e: any) => {
+  e.preventDefault();
+
+  const postBody = {intention: intention, entry_body: entry, tarot_card_id: [{id: cardOne.name,  isLight: isLightCardOne, readingStyle: readingCardOne }]}
+
+  postEntry(postBody)
+}
 
 
 
@@ -86,18 +88,6 @@ const ShowSingleCard = () =>(
     <View>
 
 
-    <View>
-    <Text>ThreeCardsReadingScreen</Text>
-
-    <TextInput 
-     placeholder="Please type your intention here..."
-      style={styles.input}
-      onChangeText={setIntention}
-      value={intention}
-    />
-<Button title="Submit Intention" onPress={ () => {setIntentionPressed(true)}}
-/>
-</View>
 
 
  
@@ -113,7 +103,7 @@ const ShowSingleCard = () =>(
           />
 
       {/* onPress just console logs entry but entry changes state as you type would likely need another function on onPress to post new entry     */}
-    <Button title="Submit Entry" onPress={ () => { console.log(entry)}}
+    <Button title="Submit Entry" onPress={handleSubmit}
     />
 
 <Modal animationType = {"slide"}
@@ -128,6 +118,9 @@ const ShowSingleCard = () =>(
         Arcana: {selectedCard.arcana},
          Suit: {selectedCard.suit},
          Elemental: {selectedCard.Elemental}
+        
+       Description: {isLightCardOne? selectedCard.meanings.light: null}
+       Description: {!isLightCardOne? selectedCard.meanings.shadow: null}
       
                   </Text>
 
@@ -140,7 +133,7 @@ const ShowSingleCard = () =>(
         onChangeText={setEntry}
         value={entry}
       />
-<Button title="Submit Entry" onPress={()=>{console.log(entry)}}
+<Button title="Submit Entry" onPress={handleSubmit}
 />
 </View>
 

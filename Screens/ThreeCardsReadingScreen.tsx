@@ -39,7 +39,7 @@ const [cardTwo, setCardTwo] = React.useState(sidsInfo[Math.floor(Math.random() *
 const [cardThree, setCardThree] = React.useState(sidsInfo[Math.floor(Math.random() * sidsInfo.length)])
 
 const [imagePressed, setImagePressed] = React.useState(false);
-const [selectedCard, setSelectedCard] = React.useState(cardOne);
+const [selectedCard, setSelectedCard] = React.useState({});
 
 
 const [cardOneImage, setCardOneImage ] = React.useState(
@@ -191,6 +191,8 @@ const ShowThreeCard = () =>(
         Arcana: {selectedCard.arcana},
          Suit: {selectedCard.suit},
          Elemental: {selectedCard.Elemental}
+
+
       
                   </Text>
 
