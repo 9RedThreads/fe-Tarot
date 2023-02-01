@@ -17,26 +17,24 @@ export type BottomTabStackParamList = {
     ThreeCardsReading: undefined;
     JournalEntries: undefined;
     Learning: undefined;
-
 };
-
-
 
 
 
 const BottomTabNavigator = () => {
   // Authentocation start - For checking if user logged in
-  const authCtx = useContext(AuthContext);
-  useFocusEffect(() => {
-    console.log(authCtx.isLogged);
-    console.log(authCtx.isLogged);
-    console.log(authCtx.production);
-    console.log(authCtx.userId);
-    console.log(authCtx.jwt);
-    console.log(authCtx.email);
-    console.log(authCtx.username);
-    console.log("show bottom tab screen");
-  });
+  // const authCtx = useContext(AuthContext);
+  // useFocusEffect(() => {
+  //   // console.log(authCtx.isLogged);
+  //   // console.log(authCtx.isLogged);
+  //   // console.log(authCtx.production);
+  //   // console.log(authCtx.userId);
+  //   // console.log(authCtx.jwt);
+  //   // console.log(authCtx.email);
+  //   // console.log(authCtx.username);
+  //   // console.log("show bottom tab screen");
+  //   getJWT();
+  // });
   // Authentocation end - For checking if user logged in
 
   const navigation = useNavigation();

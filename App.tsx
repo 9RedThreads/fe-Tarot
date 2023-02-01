@@ -5,12 +5,22 @@ import RootNavigator from "./navigator/RootNavigator";
 // Authentocation - For checking if user logged in
 import AuthContextProvider from "./store/AuthProvider";
 
+
+
+
+
+
+
+
 function App() {
   return(
     <AuthContextProvider>
+
+   
       <NavigationContainer>
         <RootNavigator />
       </NavigationContainer>
+
      </AuthContextProvider>
   )
 }

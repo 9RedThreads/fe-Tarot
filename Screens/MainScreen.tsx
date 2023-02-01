@@ -15,11 +15,11 @@ import { styled } from "nativewind";
 import JournalPreview from "../Components/JournalPreview";
 import { Icon } from "@rneui/themed";
 
+
 type MainScreenNavigation = CompositeNavigationProp<
   BottomTabNavigationProp<BottomTabStackParamList>,
   NativeStackNavigationProp<RootStackParamList>
 >;
-
 
 
 const MainScreen = () => {

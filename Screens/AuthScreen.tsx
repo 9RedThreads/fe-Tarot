@@ -8,6 +8,7 @@ import { AxiosError, AxiosResponse } from 'axios';
 import { RootStackParamList } from '../navigator/RootNavigator';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 
@@ -65,7 +66,7 @@ import { useNavigation } from '@react-navigation/native';
 type AuthParamType = NativeStackNavigationProp<RootStackParamList>;
 
 
-const AuthScreen = ({route}) => {
+const AuthScreen = ({route}:any) => {
   const [password, setPassword] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [username, setUsername] = useState<string>("");
@@ -82,9 +83,19 @@ const AuthScreen = ({route}) => {
 
   useEffect(() => {
     if (route.params?.isLogout) {
-      logout()
+      logout();
     }
   }, []);
+
+  // -------- Store JWT to Local Storage ---------//
+  const storeJWT = (jwt:string) => {
+    return AsyncStorage.setItem("@jwt", jwt)
+    .catch((err) => {
+      console.log(err ,"< err in save to local storage")
+      return err;
+    })
+  };
+  // -------- Store JWT to Local Storage ---------//
 
   // --------  ConfirmPage Component ------------//
   const ConfirmPage = () => {
@@ -239,7 +250,6 @@ const AuthScreen = ({route}) => {
       data: { email, password },
     })
       .then((response: AxiosResponse) => {
-        console.log(response!.data, "< login return");
         const { email, jwt, user_id, user_name } = response!.data.user;
         authCtx.setJwt(jwt);
         authCtx.setIsloggedIn(true);
@@ -247,7 +257,9 @@ const AuthScreen = ({route}) => {
         authCtx.setUsername(user_name);
         authCtx.saveTokenFromLocalStorage();
         authCtx.setUserId(user_id.toString());
+        storeJWT(jwt);
         navigation.navigate("BottomTabNavigator");
+        
       })
       .catch((error: AxiosError) => {
         const errorData: any = error!.response!.data;
@@ -264,6 +276,7 @@ const AuthScreen = ({route}) => {
 
   const logout = () => {
     authCtx.reset();
+    storeJWT("");
     navigation.navigate("BottomTabNavigator");
   };
   // --------------------- Logout function ------------------------//
@@ -340,7 +353,6 @@ const AuthScreen = ({route}) => {
 
 export default AuthScreen;
 
-
 const styles = StyleSheet.create({
   main_container: {
     marginTop: 20,
@@ -399,3 +411,27 @@ const confirmPageStyles = StyleSheet.create({
     textAlign:"center",
   }
 });
+
+
+
+export const autoLogin = (api:any) => {
+  let _token:string |null;
+  return AsyncStorage.getItem("@jwt")
+    .then((token:string|null) => {
+      _token = token;
+      if (!token) return Promise.reject(false);
+      return axios({
+        method: "get",
+        url: api,
+        headers: { Authorization: `bearer ${token}` },
+      });
+    })
+    .then((response: AxiosResponse) => {
+      const user = response!.data.user;
+      user["jwt"] = _token;
+      return Promise.resolve(user);
+    })
+    .catch((err) => {
+      return Promise.reject(false);
+    });
+};
