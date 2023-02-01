@@ -62,7 +62,7 @@ const JournalPreview = ({ navigation, route, entries }: Props) => {
   const year = date.slice(0, 4);
   const month = date.slice(5, 7);
   const day = date.slice(8, 10);
- console.log(entries, '<<<< entries')
+
 
   return (
     <ScrollView className="max-h-20 flex-1 h-full">
