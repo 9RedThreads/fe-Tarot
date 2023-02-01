@@ -7,8 +7,6 @@ const JournalEntriesScreen = ({route}) => {
   const entryCards = JSON.parse(entry.tarot_card_id)
   
 
-
-  console.log(a, '<<< a')
   return (
     <View>
       <Text className='text-green-500'>{entry.created_at}</Text>

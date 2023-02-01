@@ -35,6 +35,8 @@ const MyJournalScreen = ({ month }) => {
       : (setMonthAsNumber(monthAsNumber + 11), setCurrentYear(currentYear - 1));
   }
 
+  //this is a random message
+
   function goForwardAMonth() {
     monthAsNumber < 11
       ? //note: January = 0, December = 11
