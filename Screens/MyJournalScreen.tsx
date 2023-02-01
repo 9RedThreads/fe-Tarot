@@ -1,10 +1,13 @@
 import { View, Text, ScrollView, TouchableOpacity } from "react-native";
 import { useState } from "react";
 import SimpleJournalCard from "../Components/SimpleJournalCard";
+import { styled } from "nativewind";
 
 const MyJournalScreen = ({ month }) => {
   const monthAsNumber = new Date().getMonth();
   const currentYear = new Date().getFullYear();
+
+  const StyledView = styled(View);
 
   function daysInThisMonth() {
     return new Date(currentYear, monthAsNumber, 0).getDate();
@@ -30,12 +33,12 @@ const MyJournalScreen = ({ month }) => {
   return (
     <ScrollView>
       <Text className="border">{currentMonth}</Text>
-      <View className="border flex-row flex-wrap justify-evenly">
+      <StyledView className="border flex-row flex-wrap justify-evenly">
         <SimpleJournalCard currentDaysInMonth={currentDaysInMonth} />
         <TouchableOpacity>
           <Text>Next...</Text>
         </TouchableOpacity>
-      </View>
+      </StyledView>
     </ScrollView>
     //on Monday work on this so on press of next rerenders month new month, changes setsCurrentMonthetc
   );
