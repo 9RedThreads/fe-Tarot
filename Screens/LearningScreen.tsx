@@ -50,7 +50,7 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
 
           
 </ScrollView>
-                  <Text 
+                  <Text className="text-center bg-red rounded-md w-30 self-end  p-0.5 m-3 mt-0 text-sm font-semibold"
   onPress={() => {
     setUseApp(!useApp);}
   }> Close how to use app </Text>
@@ -130,7 +130,7 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
               From a more mystical perspective, this energy guides and connects you with the cards, whilst for those who are less mystically inclined it can be more meditative and help focus your attention for an interpretation once the cards have been dealt.
                   </Text>
                   </ScrollView>
-                  <Text 
+                  <Text className="text-center bg-red rounded-md w-30 self-end  p-0.5 m-3 mt-0 text-sm font-semibold" 
   onPress={() => {
     setHowTarot(!howTarot);}
   }> Close how to do a tarot reading </Text>
@@ -205,7 +205,7 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
 
                   </Text>
                   </ScrollView>
-                  <Text 
+                  <Text className="text-center bg-red rounded-md w-30 self-end  p-0.5 m-3 mt-0 text-sm font-semibold"
   onPress={() => {
     setImagePressed(!imagePressed);}
   }> Close Card </Text>
