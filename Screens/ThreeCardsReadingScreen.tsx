@@ -30,17 +30,17 @@ const [selectedCard, setSelectedCard] = React.useState(cardOne);
 
 const [cardOneImage, setCardOneImage ] = React.useState(
 <TouchableOpacity onPress={() =>{{setImagePressed(true); setSelectedCard(cardOne)};}}>
-<Image style = {styles.images} source = {cardOne.image} />
+<Image source = {cardOne.image} />
 </TouchableOpacity>);
 
 const [cardTwoImage, setCardTwoImage ] = React.useState(
   <TouchableOpacity onPress={() =>{{setImagePressed(true); setSelectedCard(cardTwo)};}}>
-  <Image style = {styles.images} source = {cardTwo.image} />
+  <Image source = {cardTwo.image} />
   </TouchableOpacity>);
 
 const [cardThreeImage, setCardThreeImage ] = React.useState(
   <TouchableOpacity onPress={() =>{{setImagePressed(true); setSelectedCard(cardThree)};}}>
-  <Image style = {styles.images} source = {cardThree.image} />
+  <Image source = {cardThree.image} />
   </TouchableOpacity>);
 
 // States for each reading style if needed
@@ -122,11 +122,11 @@ const ReadingStyle = () =>(
 const ShowThreeCard = () =>(
 
 
-<StyledScrollView>
+<ScrollView>
     {cardOneImage}
     {cardTwoImage}
     {cardThreeImage}
-</StyledScrollView>
+</ScrollView>
 
 
 )
@@ -145,7 +145,7 @@ const ShowThreeCard = () =>(
         value={intention}
         className = "bg-cyan-100 border-2 border-orange-700 text-black rounded-lg h-16 m-3 p-2"
       />
-<StyledButton className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' title="Submit Intention" onPress={ () => {setIntentionPressed(true)}}
+<Button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' title="Submit Intention" onPress={ () => {setIntentionPressed(true)}}
 />
 </View>
 
@@ -160,7 +160,6 @@ const ShowThreeCard = () =>(
 
       <TextInput 
        placeholder="Please type your diary here..."
-        style={styles.input}
         onChangeText={setEntry}
         value={entry}
         className = "bg-cyan-100 border-2 border-orange-700 text-black rounded-lg h-16 m-3 p-2"
@@ -175,7 +174,7 @@ const ShowThreeCard = () =>(
     visible={imagePressed}
     >
 <ScrollView>
-  <Image style = {styles.images} source = {selectedCard.image}/>
+  <Image source = {selectedCard.image}/>
               <Text >
                    Name : {selectedCard.name}  
                     Number: {selectedCard.number} 

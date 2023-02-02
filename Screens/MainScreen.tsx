@@ -1,5 +1,5 @@
 
-import { Component, useEffect, useState } from "react";
+import { Component, useEffect, useState, useContext } from "react";
 import { ScrollView, Text, TouchableOpacity, Button, Image, View } from "react-native";
 
 import {
@@ -13,7 +13,9 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import React from "react";
 import JournalPreview from "../Components/JournalPreview";
-import {getEntries} from "../utils"
+import { getEntries } from "../utils";
+import EntriesContext from "../store/entriesContext";
+
 type MainScreenNavigation = CompositeNavigationProp<
   BottomTabNavigationProp<BottomTabStackParamList>,
   NativeStackNavigationProp<RootStackParamList>
@@ -23,17 +25,19 @@ type MainScreenNavigation = CompositeNavigationProp<
 const MainScreen = () => {
 
   const navigation = useNavigation<MainScreenNavigation>();
+  const entryContext = useContext(EntriesContext);
 
-const [user, setUser] = useState("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Impjc2hlYXJvbkBob3RtYWlsLmNvLnVrIiwidXNlcklkIjoiOSIsImlhdCI6MTY3NTE2NTcyNSwiZXhwIjoxNjkwNzE3NzI1fQ.1_4GgiRnXm3RMxVG7IZ4CeSS5ypIar3FmF-HfC0FQvM")
-const [entries, setEntries] = useState([])
-  
+  const [user, setUser] = useState(
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Impjc2hlYXJvbkBob3RtYWlsLmNvLnVrIiwidXNlcklkIjoiOSIsImlhdCI6MTY3NTMzMzExMSwiZXhwIjoxNjkwODg1MTExfQ.LgI7ZnBgucB1Bks9k3MiM0tZ9qJNllOCLciYRMz4Ejg"
+  );
+  const [entries, setEntries] = useState([]);
+
   useEffect(() => {
     getEntries(user).then((entries) => {
-      setEntries(entries);
+      setEntries(entries)
+      entryContext.setEntries(entries);
     });
   }, []);
-
-
 
   return (
   <ScrollView className= "bg-white bg-origin-border rounded-md border-darkGrey border-8">
