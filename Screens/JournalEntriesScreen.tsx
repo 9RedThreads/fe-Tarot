@@ -11,11 +11,13 @@ const JournalEntriesScreen = ({route}) => {
   let imagePosition = 1
 
   return (
-    <ScrollView className='flex flex-col-3 flex-rows-3 gap-5' >
-      <Text className='text-green-500 col-span-full'>{entry.created_at}</Text>
+    <ScrollView className='flex flex-wrap flex-row' >
+      <Text className=' text-green-500'>{entry.created_at}</Text>
+      <View className='flex flex-wrap flex-row w-screen'>
         {cardInfo.map((card)=> {
-          return <Image className={`col-span-${imagePosition++} row-span-2 w-full`} key={card.id} source={sidsInfo[card.id].image}/>
+          return <Image className={`inline-flex`} key={card.id} source={sidsInfo[card.id].image}/>
         })}
+        </View>
       <TextInput 
       className=' col-span-full'
             value={entry.entry_body}
