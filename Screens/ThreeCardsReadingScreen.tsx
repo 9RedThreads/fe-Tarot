@@ -1,5 +1,5 @@
 
-import { View, Text, TextInput, StyleSheet, Button, Image, ScrollView, TouchableOpacity, Modal } from 'react-native'
+import { View, Text, TextInput, Button, Image, ScrollView, TouchableOpacity, Modal } from 'react-native'
 import React from 'react'
 import { sidsInfo } from '../Tarot-cards/sids-cards';
 import axios from 'axios';
@@ -7,38 +7,6 @@ import { styled } from 'nativewind';
 
 const ThreeCardsReadingScreen = () => {
 
-  const StyledView = styled(View)
-const StyledText = styled(Text)
-const StyledImage = styled(Image)
-const StyledScrollView = styled(ScrollView)
-const StyledButton = styled(Button)
-
-const styles = StyleSheet.create({
-  input: {
-    height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
-  },
-  images: {
-    height: 160,
-    width: 90,
-    alignItems: 'center',
-
-  },
-  button: {
-    display: 'flex',
-    height: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '80%',
-    backgroundColor: '#C7E0F4',
-    borderWidth: 1,
-    margin:4,
-    borderRadius: 20,
-    alignContent:'center'
-  },  
-})
 
 const [intention, setIntention] = React.useState('');
 const [entry, setEntry] = React.useState('');
