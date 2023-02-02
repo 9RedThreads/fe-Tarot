@@ -63,7 +63,9 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
             visible={howTarot}
            >
      <ScrollView>
-              <Text>
+
+              <Text >
+
               How to do Tarot
 
               What is Tarot?
@@ -137,8 +139,10 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
 
           </Modal>
 
-       <TouchableOpacity
-            
+
+
+       <TouchableOpacity           
+
             onPress={() => {
               setUseApp(true);
             }}>
@@ -146,16 +150,16 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
         </TouchableOpacity>          
 
         <TouchableOpacity
-         
+
             onPress={() => {
               setHowTarot(true);
             }}>
             <Text >How to do a Tarot reading</Text>
         </TouchableOpacity>   
 
-<Text >Select Acana </Text>
-        <TouchableOpacity
-         
+
+<Text>Select Acana </Text>
+        <TouchableOpacity           
             onPress={() => {{
               setAcana("Minor Arcana");
             }; setData(sidsInfo.filter(indCard => indCard.arcana === "Minor Arcana"))}}>
@@ -163,7 +167,7 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
         </TouchableOpacity>   
 
         <TouchableOpacity
-            
+
             onPress={() => {{
               setAcana("Major Arcana");
             }; setData(sidsInfo.filter(indCard => indCard.arcana === "Major Arcana"))}}>
@@ -171,7 +175,7 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
         </TouchableOpacity>   
 
         <TouchableOpacity
-         
+
             onPress={() => {{
               setAcana("");
             }; setData(sidsInfo)}}>
@@ -185,7 +189,9 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
         renderItem={({item}) => {
        
         return  <TouchableOpacity onPress={() =>{{setImagePressed(true); setSelectedCard(item)}}}>
-          <Image   source = {item.image}/>
+
+          <Image source = {item.image}/>
+
 
           
           </TouchableOpacity>
@@ -199,6 +205,7 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
     >
 <ScrollView>
   <Image source = {selectedCard.image}/>
+
   <View className=' m-3 rounded-md bg-blue'>
   <View className=" p-3 m-3 bg-white rounded-md w-11/12 self-center " >
 
@@ -208,6 +215,9 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
 
               </Text>
               <Text className=' inset-x-6 '>
+
+              <Text>
+
                     Number: {selectedCard.number} 
 
               </Text>            
