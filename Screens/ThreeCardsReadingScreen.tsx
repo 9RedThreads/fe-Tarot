@@ -145,7 +145,7 @@ const ShowThreeCard = () =>(
         value={intention}
         className = "bg-cyan-100 border-2 border-orange-700 text-black rounded-lg h-16 m-3 p-2"
       />
-<Button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' title="Submit Intention" onPress={ () => {setIntentionPressed(true)}}
+<Button  title="Submit Intention" onPress={ () => {setIntentionPressed(true)}}
 />
 </View>
 
