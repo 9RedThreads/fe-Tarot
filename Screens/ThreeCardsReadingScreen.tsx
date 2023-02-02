@@ -29,18 +29,18 @@ const [selectedCard, setSelectedCard] = React.useState(cardOne);
 
 
 const [cardOneImage, setCardOneImage ] = React.useState(
-<TouchableOpacity onPress={() =>{{setImagePressed(true); setSelectedCard(cardOne)};}}>
-<Image source = {cardOne.image} />
+<TouchableOpacity className='inline-flex'  onPress={() =>{{setImagePressed(true); setSelectedCard(cardOne)};}}>
+<Image className='inline-flex'  source = {cardOne.image} />
 </TouchableOpacity>);
 
 const [cardTwoImage, setCardTwoImage ] = React.useState(
-  <TouchableOpacity onPress={() =>{{setImagePressed(true); setSelectedCard(cardTwo)};}}>
-  <Image source = {cardTwo.image} />
+  <TouchableOpacity className=' inline-flex '  onPress={() =>{{setImagePressed(true); setSelectedCard(cardTwo)};}}>
+  <Image className=' inline-flex'  source = {cardTwo.image} />
   </TouchableOpacity>);
 
 const [cardThreeImage, setCardThreeImage ] = React.useState(
-  <TouchableOpacity onPress={() =>{{setImagePressed(true); setSelectedCard(cardThree)};}}>
-  <Image source = {cardThree.image} />
+  <TouchableOpacity className=' inline-flex '   onPress={() =>{{setImagePressed(true); setSelectedCard(cardThree)};}}>
+  <Image className=' inline-flex '  source = {cardThree.image} />
   </TouchableOpacity>);
 
 // States for each reading style if needed
@@ -83,10 +83,13 @@ const handleSubmit = (e: any) => {
 
 
 const ShowingIntention = () => (
-<View>
-  <Text>
-  Intention:  {intention}
+  <View>
+  <Text className="text-xl self-center">Intention</Text>
+<View className='m-3 rounded-md bg-blue'>
+  <Text className='p-1 m-3 bg-white text-start rounded-md h-15' >
+  {intention}
   </Text>
+</View>
 </View>
 
 )
@@ -94,25 +97,24 @@ const ShowingIntention = () => (
 const ReadingStyle = () =>(
 <View>
 <Text>Please select a reading style</Text>
-<Button
-        title="pastPresentFuture"
-        onPress={() => { setReadingStyle("pastPresentFuture"); setReadingStylePressed(true); setIntentionPressed(false);setShowThreeCards(true); setReadingCardOne("Past"); setReadingCardTwo("Present"); setReadingCardThree("Future"); setIsLightCardOne(Math.random() < 0.5);setIsLightCardTwo(Math.random() < 0.5); setIsLightCardThree(Math.random() < 0.5) }}
-       
-      />
 
-<Button
-      
-        title="opportunitiesChallengesAdvice"
-        onPress={() =>  {setReadingStyle("opportunitiesChallengesAdvice"); setReadingStylePressed(true);setIntentionPressed(false); setShowThreeCards(true); setReadingCardOne("Opportunities"); setReadingCardTwo("Challenges"); setReadingCardThree("Advice"); setIsLightCardOne(Math.random() < 0.5);setIsLightCardTwo(Math.random() < 0.5); setIsLightCardThree(Math.random() < 0.5) }}
-       
-      />
+<TouchableOpacity onPress={() => { setReadingStyle("pastPresentFuture"); setReadingStylePressed(true); setIntentionPressed(false);setShowThreeCards(true); setReadingCardOne("Past"); setReadingCardTwo("Present"); setReadingCardThree("Future"); setIsLightCardOne(Math.random() < 0.5);setIsLightCardTwo(Math.random() < 0.5); setIsLightCardThree(Math.random() < 0.5) }}>
+          <Text className="text-center bg-red rounded-md w-30 self-end  p-2 m-3 mt-0 text-sm font-semibold">
+            Past Present Future 
+          </Text>
+        </TouchableOpacity>
 
-<Button
+        <TouchableOpacity onPress={() =>  {setReadingStyle("opportunitiesChallengesAdvice"); setReadingStylePressed(true);setIntentionPressed(false); setShowThreeCards(true); setReadingCardOne("Opportunities"); setReadingCardTwo("Challenges"); setReadingCardThree("Advice"); setIsLightCardOne(Math.random() < 0.5);setIsLightCardTwo(Math.random() < 0.5); setIsLightCardThree(Math.random() < 0.5) }}>
+          <Text className="text-center bg-red rounded-md w-30 self-end  p-2 m-3 mt-0 text-sm font-semibold">
+            Opportunities Challenges Advice
+          </Text>
+        </TouchableOpacity>
 
-        title="strengthsWeaknessesGrowth"
-        onPress={() =>  {setReadingStyle("strengthsWeaknessesGrowth"); setReadingStylePressed(true); setIntentionPressed(false); setShowThreeCards(true); setReadingCardOne("Strengths"); setReadingCardTwo("Weaknesses"); setReadingCardThree("Growth"); setIsLightCardOne(Math.random() < 0.5);setIsLightCardTwo(Math.random() < 0.5); setIsLightCardThree(Math.random() < 0.5)}}
-       
-      />
+        <TouchableOpacity onPress={() =>  {setReadingStyle("strengthsWeaknessesGrowth"); setReadingStylePressed(true); setIntentionPressed(false); setShowThreeCards(true); setReadingCardOne("Strengths"); setReadingCardTwo("Weaknesses"); setReadingCardThree("Growth"); setIsLightCardOne(Math.random() < 0.5);setIsLightCardTwo(Math.random() < 0.5); setIsLightCardThree(Math.random() < 0.5)}}>
+          <Text className="text-center bg-red rounded-md w-30 self-end  p-2 m-3 mt-0 text-sm font-semibold">
+            Strengths Weaknesses Growth
+          </Text>
+        </TouchableOpacity>
 
 </View>
 )
@@ -122,19 +124,20 @@ const ReadingStyle = () =>(
 const ShowThreeCard = () =>(
 
 
-<ScrollView>
+<View className='flex flex-wrap flex-row w-screen justify-around p-3 my-2 bg-red'>
     {cardOneImage}
     {cardTwoImage}
     {cardThreeImage}
-</ScrollView>
+    
+</View>
 
 
 )
   return (
-<View className='bg-slate-100'>
+<View className='bg-darkGrey'>
 
 
-<ScrollView> 
+<ScrollView className='bg-white'> 
   
 
       <View>
@@ -143,10 +146,15 @@ const ShowThreeCard = () =>(
        placeholder="Please type your intention here..."
         onChangeText={setIntention}
         value={intention}
-        className = "bg-cyan-100 border-2 border-orange-700 text-black rounded-lg h-16 m-3 p-2"
+        className = "bg-white border-8 border-blue text-black rounded-lg h-16 m-3 p-2"
       />
-<Button  title="Submit Intention" onPress={ () => {setIntentionPressed(true)}}
-/>
+
+<TouchableOpacity onPress={ () => {setIntentionPressed(true)}}>
+          <Text className="text-center bg-red rounded-md w-30 self-end  p-2 m-3 mt-0 text-sm font-semibold">
+            Submit Intention
+          </Text>
+        </TouchableOpacity>
+
 </View>
 
 {intentionPressed? <ReadingStyle/> :null} 
@@ -155,67 +163,77 @@ const ShowThreeCard = () =>(
 
 
 {showThreeCards ? <ShowingIntention/>:null} 
-<View>
-      <Text>Submit Diary</Text>
 
-      <TextInput 
-       placeholder="Please type your diary here..."
-        onChangeText={setEntry}
-        value={entry}
-        className = "bg-cyan-100 border-2 border-orange-700 text-black rounded-lg h-16 m-3 p-2"
-      />
-<Button title="Submit Entry" onPress={handleSubmit}
-/>
-</View>
+<Text className="text-xl self-center  ">Journal Entry</Text>
+
+      <ScrollView className=" m-3 rounded-md bg-blue">
+        <TextInput
+          placeholder="Please type your diary entry here"
+          onChangeText={setEntry}
+          multiline={true}
+          value={entry}
+          className=" p-1 m-3 bg-white text-start rounded-md h-24"
+        />
+        <TouchableOpacity onPress={handleSubmit}>
+          <Text className="text-center bg-red rounded-md w-30 self-end  p-2 m-3 mt-0 text-sm font-semibold">
+            Submit Entry
+          </Text>
+        </TouchableOpacity>
+      </ScrollView>
 
 
-<Modal animationType = {"slide"}
-    transparent={false}
-    visible={imagePressed}
-    >
-<ScrollView>
-  <Image source = {selectedCard.image}/>
-              <Text >
-                   Name : {selectedCard.name}  
-                    Number: {selectedCard.number} 
-        Arcana: {selectedCard.arcana},
-         Suit: {selectedCard.suit},
-         Elemental: {selectedCard.Elemental}
+      <Modal animationType={"slide"} transparent={false} visible={imagePressed}>
+        <ScrollView className="bg-red">
+          <Image className="self-center mt-3 " source={cardOne.image} />
+          <View className=" m-3 rounded-md bg-blue">
+            <View className=" p-3 m-3 bg-white rounded-md w-11/12 self-center ">
+              <Text className="text-xl self-center mb-3 ">{selectedCard.name}</Text>
+              <Text className=" inset-x-6 ">Number: {selectedCard.number}</Text>
+              <Text className=" inset-x-6 ">Arcana: {selectedCard.arcana}</Text>
+              <Text className=" inset-x-6 ">Suit: {selectedCard.suit}</Text>
+              <Text className=" inset-x-6 ">Elemental: {selectedCard.Elemental}</Text>
+              <Text className="mt-3">Description:</Text>
+              <Text className=" inset-x-1">
 
-         {isLightCardOne && selectedCard === cardOne? "Description:" + selectedCard.meanings.light: null}
-       {!isLightCardOne  && selectedCard === cardOne? "Description:" + selectedCard.meanings.shadow: null}
-       {isLightCardTwo && selectedCard === cardTwo? "Description:" + selectedCard.meanings.light: null}
-       {!isLightCardTwo  && selectedCard === cardTwo? "Description:" + selectedCard.meanings.shadow: null}
-       {isLightCardThree  && selectedCard === cardThree? "Description:" + selectedCard.meanings.light: null}
-       {!isLightCardThree && selectedCard === cardThree? "Description:" +  selectedCard.meanings.shadow + "": null}
+         {isLightCardOne && selectedCard === cardOne? selectedCard.meanings.light: null}
+       {!isLightCardOne  && selectedCard === cardOne?  selectedCard.meanings.shadow: null}
+       {isLightCardTwo && selectedCard === cardTwo? selectedCard.meanings.light: null}
+       {!isLightCardTwo  && selectedCard === cardTwo?  selectedCard.meanings.shadow: null}
+       {isLightCardThree  && selectedCard === cardThree?  selectedCard.meanings.light: null}
+       {!isLightCardThree && selectedCard === cardThree?  selectedCard.meanings.shadow + "": null}
 
       
                   </Text>
 
-                  <View>
-      <Text>Submit Diary</Text>
+                  <Text className="text-xl self-center  ">Journal Entry</Text>
 
-      <TextInput 
-       placeholder="Please type your diary here..."
-        
-        onChangeText={setEntry}
-        value={entry}
-        className = "bg-cyan-100 border-2 border-orange-700 text-black rounded-lg h-16 m-3 p-2"
-      />
-<Button title="Submit Entry" onPress={handleSubmit}
-/>
-</View>
+      <ScrollView className=" m-3 rounded-md bg-blue">
+        <TextInput
+          placeholder="Please type your diary entry here"
+          onChangeText={setEntry}
+          multiline={true}
+          value={entry}
+          className=" p-1 m-3 bg-white text-start rounded-md h-24"
+        />
+        <TouchableOpacity onPress={handleSubmit}>
+          <Text className="text-center bg-red rounded-md w-30 self-end  p-2 m-3 mt-0 text-sm font-semibold">
+            Submit Entry
+          </Text>
+        </TouchableOpacity>
+      </ScrollView>
 
                   
-                  </ScrollView>
+      </View>
                   <Text
   onPress={() => {
     setImagePressed(!imagePressed);}
   }> Close Card </Text>
 
+</View>
+    </ScrollView>
+
     </Modal>
-
-
+  
     </ScrollView>
   
     </View>
