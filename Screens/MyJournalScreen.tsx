@@ -1,96 +1,68 @@
 import { View, Text, ScrollView, TouchableOpacity } from "react-native";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import SimpleJournalCard from "../Components/SimpleJournalCard";
-import EntriesContext from "../store/entriesContext";
 
 const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
+  ["January", 31],
+  ["February", 28],
+  ["March", 31],
+  ["April",30],
+  ["May",31],
+  ["June",30],
+  ["July", 31],
+  ["August", 31],
+  ["September", 30],
+  ["October", 31],
+  ["November", 30],
+  ["December", 31]
+
 ];
 
-const MyJournalScreen = ({ month }) => {
-  const [monthAsNumber, setMonthAsNumber] = useState(new Date().getMonth());
-  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
-  const [currentDaysInMonth, setCurrentDaysInMonth] = useState(daysInThisMonth);
-  const [currentMonth, setCurrentMonth] = useState(months[monthAsNumber]);
-  const [viewingCurrentMonth, setViewingCurrentMonth] = useState(true);
-  const entryContext = useContext(EntriesContext);
-  useEffect(() => {
-    console.log(entryContext.entries, '<<entries from myjounalscreen')
-  }, []);
+const MyJournalScreen = () => {
+  const date = new Date()
+  const cMonth = date.getMonth()
+  const [displayMonth, setDisplayMonth] = useState(cMonth)
+  const [daysInMonth, setDaysInMonth] = useState([])
 
-  function daysInThisMonth() {
-    return new Date(currentYear, monthAsNumber + 1, 0).getDate();
+const changeMonth = (num: number) => {
+  let a = displayMonth + num;
+  if (a < 1) return setDisplayMonth(12);
+  if (a > 12) return setDisplayMonth(1);
+  return setDisplayMonth(a);
+};
+
+useEffect(() => {
+  let allJCards: any = [];
+  for (let i = 1; i < months[displayMonth - 1][1]; i++) {
+    let d = (i<10)? `0${i}`: i
+    let m = (displayMonth<10)? `0${displayMonth}`: displayMonth
+    allJCards.push(
+      <View>
+        <SimpleJournalCard  key={i} day={d} month={m} />
+      </View>
+    );
   }
-
-  function goBackAMonth() {
-    monthAsNumber > 0
-      ? //note: January = 0, December = 11
-        setMonthAsNumber(monthAsNumber - 1)
-      : (setMonthAsNumber(monthAsNumber + 11), setCurrentYear(currentYear - 1));
-  }
-
-  //this is a random message
-
-  function goForwardAMonth() {
-    monthAsNumber < 11
-      ? setMonthAsNumber(monthAsNumber + 1)
-      : (setMonthAsNumber(monthAsNumber - 11), setCurrentYear(currentYear + 1));
-  }
-
-  function areWeOnThisMonth(monthAsNumber: number, currentYear: number) {
-    monthAsNumber === new Date().getMonth() &&
-    currentYear === new Date().getFullYear()
-      ? setViewingCurrentMonth(true)
-      : setViewingCurrentMonth(false);
-  }
-
-  useEffect(() => {
-    setCurrentDaysInMonth(daysInThisMonth);
-    setCurrentMonth(months[monthAsNumber]);
-    areWeOnThisMonth(monthAsNumber, currentYear);
-  }, [monthAsNumber]);
+  setDaysInMonth(allJCards);
+}, [displayMonth]);
 
   return (
     <ScrollView>
-      <Text className="border">{`${currentMonth} ${currentYear} `}</Text>
-      <View className="border flex-row flex-wrap justify-evenly">
-        <TouchableOpacity onPress={goBackAMonth}>
-          <Text className="w-20 h-20 border m-1 p-1 justify-center bg-yellow-100 rounded">
+      <Text>{months[displayMonth-1][0]}</Text>
+      <View className="border flex flex-row flex-wrap justify-evenly">
+        <TouchableOpacity onPress={()=>changeMonth(-1)}>
+          <Text className="w-10 h-10 border m-1 p-1 justify-center bg-yellow-100 rounded">
             Previous..
           </Text>
         </TouchableOpacity>
-
-        {viewingCurrentMonth === true ? (
-          <Text className="w-20 h-20 border m-1 p-1 justify-center bg-white-100 rounded">
+        <TouchableOpacity onPress={()=>changeMonth(1)}>
+          <Text className="w-10 h-10 border m-1 p-1 justify-center bg-yellow-100 rounded">
             Next..
           </Text>
-        ) : (
-          <TouchableOpacity onPress={goForwardAMonth}>
-            <TouchableOpacity onPress={goForwardAMonth}>
-              <Text className="w-20 h-20 border m-1 p-1 justify-center bg-yellow-100 rounded">
-                Next..
-              </Text>
-            </TouchableOpacity>
-          </TouchableOpacity>
-        )}
-
-        <SimpleJournalCard
-          currentDaysInMonth={currentDaysInMonth}
-          currentMonth={currentMonth}
-          currentYear={currentYear}
-        />
-      </View>
+        </TouchableOpacity>
+        </View>
+        <View className="flex flex-row flex-wrap justify-evenly m-3 gap-5" >
+        {daysInMonth}
+        </View>
     </ScrollView>
   );
 };

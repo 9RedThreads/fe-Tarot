@@ -31,7 +31,7 @@ const MainScreen = () => {
   const entryContext = useContext(EntriesContext);
 
   const [user, setUser] = useState(
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Impjc2hlYXJvbkBob3RtYWlsLmNvLnVrIiwidXNlcklkIjoiOSIsImlhdCI6MTY3NTE2NTcyNSwiZXhwIjoxNjkwNzE3NzI1fQ.1_4GgiRnXm3RMxVG7IZ4CeSS5ypIar3FmF-HfC0FQvM"
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Impjc2hlYXJvbkBob3RtYWlsLmNvLnVrIiwidXNlcklkIjoiOSIsImlhdCI6MTY3NTMzMzExMSwiZXhwIjoxNjkwODg1MTExfQ.LgI7ZnBgucB1Bks9k3MiM0tZ9qJNllOCLciYRMz4Ejg"
   );
   const [entries, setEntries] = useState([]);
 

@@ -1,38 +1,29 @@
+import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { useContext } from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, View, ScrollView, TouchableOpacity, Image } from "react-native";
 import MyJournalScreen from "../Screens/MyJournalScreen";
+import { useEffect, useState, useContext } from "react";
 import EntriesContext from "../store/entriesContext";
 
 type NavigateToJournalEntriesProp =
   NativeStackNavigationProp<RootStackParamList>;
 
-const SimpleJournalCard = ({
-  currentDaysInMonth,
-  currentYear,
-  currentMonth,
-}) => {
-  const entryContext = useContext(EntriesContext);
+const SimpleJournalCard = ({day, month}) => {
   const navigation = useNavigation<NavigateToJournalEntriesProp>();
+  const {entries} = useContext(EntriesContext);
 
-  const arrOfDays = [];
-  {
-    for (let i = 1; i <= currentDaysInMonth; i++) {
-      arrOfDays.push(i);
-    }
-  }
+  const matchingEntries: any = entries.filter((entry: any) => {
+    return entry.created_at.slice(5,10) === `${month}-${day}`
+  })
+const cardParams = (matchingEntries.length!==0)? () => navigation.navigate("JournalEntries", {entry: matchingEntries[0]}): () => alert('No entry found')
 
-  return arrOfDays.map((dayNum) => {
-    return (
-      <TouchableOpacity
-        key={`${currentYear}-${currentMonth}/${dayNum}`}
-        //current key ID format is '31/January/2023 - change as needed
-        onPress={() => navigation.navigate("JournalEntries")}
-      >
-        <Text className="w-20 h-20 border m-1 p-1 justify-center bg-white rounded">{`${dayNum}`}</Text>
-      </TouchableOpacity>
-    );
-  });
+  return (
+          <View className="border border-black">
+    <TouchableOpacity key={`${month}-${day}`} onPress={cardParams}>
+        <Image className="border transform scale-y-75 scale-x-50 h-16 w-14" source={require('../Tarot-cards/card-img/backOfCardsTestImage.jpg')}/>
+    </TouchableOpacity> 
+            </View>
+  );
 };
 
 export default SimpleJournalCard;
