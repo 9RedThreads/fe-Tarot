@@ -17,7 +17,7 @@ const LearningScreen = () => {
 
 
   return(
-    <View style = { styles.container }>
+    <ScrollView style = { styles.container }>
  
 
 <Modal
@@ -171,7 +171,7 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
         </TouchableOpacity>   
 
         <TouchableOpacity
-            style={styles.button2}
+            style={styles.button3}
             onPress={() => {{
               setAcana("");
             }; setData(sidsInfo)}}>
@@ -217,7 +217,7 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
 
     </Modal>
    
-      </View>
+      </ScrollView>
     );
 
    
@@ -229,6 +229,7 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
             padding: 10,
             flexWrap: 'nowrap',
             
+            
        
           },
           button: {
@@ -237,7 +238,11 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
             justifyContent: 'center',
             alignItems: 'center',
             width: '80%',
-            backgroundColor: '#2AC062',
+            backgroundColor: '#C7E0F4',
+            borderWidth: 1,
+            margin:4,
+            borderRadius: 20,
+            alignContent:'center'
           },  
           text: {
             fontSize: 14,
@@ -261,7 +266,23 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
             justifyContent: 'center',
             alignItems: 'center',
             width: '30%',
-            backgroundColor: '#ADD8E6',
+            backgroundColor: '#C7E0F4',
+            borderWidth: 1,
+            margin:4,
+            borderRadius: 20
+
+          },
+          button3:{
+            display: 'flex',
+            height: 30,
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '25%',
+            backgroundColor: '#C7E0F4',
+            borderWidth: 1,
+            margin:4,
+            borderRadius: 20
+
           }
           
         });
