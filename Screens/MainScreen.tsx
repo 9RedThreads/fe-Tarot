@@ -67,12 +67,8 @@ const [entries, setEntries] = useState([])
       <Text className="text-center bg-red rounded-md w-80 self-center p-3 m-3 text-base font-bold">Learn</Text>
       </TouchableOpacity>
 
-      <JournalPreview></JournalPreview>
+      {/* <JournalPreview></JournalPreview> */}
 
-      <Button
-        title="3 Card Reading"
-        onPress={() => navigation.navigate("ThreeCardsReading")}
-      ></Button>
       <JournalPreview entries={entries} />
 
     </ScrollView>
