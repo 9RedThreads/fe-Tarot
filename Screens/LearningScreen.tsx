@@ -141,36 +141,36 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
             onPress={() => {
               setUseApp(true);
             }}>
-            <Text >How to use App</Text>
+            <Text  className="text-left bg-red rounded-md w-30  p-1 m-1 mt-0 text-white text-sm font-semibold">How to use App</Text>
         </TouchableOpacity>          
 
         <TouchableOpacity
             onPress={() => {
               setHowTarot(true);
             }}>
-            <Text >How to do a Tarot reading</Text>
+            <Text className="text-left bg-red rounded-md w-30  p-1 m-1 mt-0 text-white text-sm font-semibold" >How to do a Tarot reading</Text>
         </TouchableOpacity>   
 
-<Text>Select Acana </Text>
+
         <TouchableOpacity           
             onPress={() => {{
               setAcana("Minor Arcana");
             }; setData(sidsInfo.filter(indCard => indCard.arcana === "Minor Arcana"))}}>
-            <Text >Minor</Text>
+            <Text className="text-center bg-red rounded-md w-30 text-white self-end  p-1 m-1 mt-0 text-sm font-semibold" >Minor</Text>
         </TouchableOpacity>   
 
         <TouchableOpacity
             onPress={() => {{
               setAcana("Major Arcana");
             }; setData(sidsInfo.filter(indCard => indCard.arcana === "Major Arcana"))}}>
-            <Text >Major</Text>
+            <Text className="text-center bg-red rounded-md w-30 text-white self-end  p-1 m-1 mt-0 text-sm font-semibold">Major</Text>
         </TouchableOpacity>   
 
         <TouchableOpacity
             onPress={() => {{
               setAcana("");
             }; setData(sidsInfo)}}>
-            <Text >Clear</Text>
+            <Text className="text-center bg-red rounded-md w-30 text-white self-end  p-1 m-1 mt-0 text-sm font-semibold"  >Clear</Text>
         </TouchableOpacity>  
 
       
