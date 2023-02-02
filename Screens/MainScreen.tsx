@@ -22,27 +22,35 @@ const MainScreen = () => {
   const navigation = useNavigation<MainScreenNavigation>();
 
   return (
-  <ScrollView className= "bg-white bg-origin-border p-3 rounded-md border-darkGrey border-8">
-  <Text className="text-darkGrey font-semibold text-2xl ">Tarot Journal</Text>
-  <TouchableOpacity onPress={() => navigation.navigate("Auth")}>
-  <Text className="text-center bg-red rounded-md w-80 self-center p-3 m-3">Login / SignIn</Text>
-      </TouchableOpacity>
+  <ScrollView className= "bg-white bg-origin-border rounded-md border-darkGrey border-8">
+    
+    <TouchableOpacity onPress={() => navigation.navigate("Auth")}>
+     <Text className="text-center bg-red rounded-md self-end w-20 p-3 mt-3 mr-3 font-bold ">login</Text>
+     </TouchableOpacity>
+     
+     <Text className="text-darkGrey font-semibold text-3xl p-4 pl-6">Tarot Journal</Text>
       <TouchableOpacity
       //onPress={() => navigation.navigate("OneCardReading")}
       >
-        <View className= "relative flex flex-wrap flex-row bg-blue pb-20 h-60 ">
+        <View className= "flex flex-wrap flex-row bg-blue w-screen pb-20 h-60 ">
         <Image className= "scale-75 inline-flex p-0 m-0 -translate-y-3"
           source={require("../Tarot-cards/backCard.png")}
           />
-        <View className="inline-flex p-10 ">
-        <Text className=" text-center text-lg font-Georgia ">Daily</Text>
-        <Text className="text-center text-lg">Reading</Text>
+        <View className="inline-flex p-10 pt-16 pl-14 ">
+        <Text className=" text-center text-2xl font-Georgia  ">Daily</Text>
+        <Text className="text-center text-2xl">Reading</Text>
         </View>
         </View>
       </TouchableOpacity>
 
       <TouchableOpacity onPress={() => navigation.navigate("ThreeCardsReading")}> 
-      <Text className="text-center bg-red rounded-md w-80 self-center p-3 m-3">Three Card Reading</Text>
+      <Text className="text-center bg-red rounded-md w-80 self-center p-3 m-3 text-base font-bold">Three Card Reading</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate("MyJournal")}> 
+      <Text className="text-center bg-red rounded-md w-80 self-center p-3 text-base font-bold">My Journal</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.navigate("Learning")}> 
+      <Text className="text-center bg-red rounded-md w-80 self-center p-3 m-3 text-base font-bold">Learn</Text>
       </TouchableOpacity>
       <JournalPreview></JournalPreview>
     </ScrollView>
