@@ -1,7 +1,7 @@
-import { View, Text } from "react-native";
-import React, { useState } from "react";
+import { View, Text, ScrollView } from "react-native";
+import React, { useEffect, useState } from "react";
 import JournalPreviewCard from "./JournalPreviewCard";
-import { Props } from "../App";
+import  Props  from "../App";
 import { useNavigation } from "@react-navigation/native";
 
 export type journalExample = {
@@ -42,28 +42,43 @@ const journalExample3 = {
   created_at: "Nov 3",
 };
 
-const JournalPreview = ({ navigation, route }: Props) => {
+const JournalPreview = ({ navigation, route, entries }: Props) => {
   const [recentJournals, setRecentJournals] = useState([
     journalExample,
     journalExample2,
     journalExample3,
   ]);
 
+  useEffect(() => {
+    
+    let recentEntries = [];
+    for (let i = 0; i >= 3; i++) {
+      recentEntries.push(entries[i]);
+    }
+    setRecentJournals(recentEntries);
+  }, [entries]);
+
+  const date = new Date().toISOString();
+  const year = date.slice(0, 4);
+  const month = date.slice(5, 7);
+  const day = date.slice(8, 10);
+
+
   return (
-    <View>
+    <ScrollView className="max-h-20 flex-1 h-full">
       <Text>Recent Journals:</Text>
 
-      <View>
-        {recentJournals.map((recentJournal) => {
+      <ScrollView className="">
+        {entries.map((entry) => {
           return (
             <JournalPreviewCard
-              key={recentJournal.created_at}
-              recentJournal={recentJournal}
+              key={entry.created_at}
+              entry={entry}
             />
           );
         })}
-      </View>
-    </View>
+      </ScrollView>
+    </ScrollView>
   );
 };
 

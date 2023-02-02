@@ -17,7 +17,7 @@ const LearningScreen = () => {
 
 
   return(
-    <View style = { styles.container }>
+    <ScrollView style = { styles.container }>
  
 
 <Modal
@@ -171,7 +171,7 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
         </TouchableOpacity>   
 
         <TouchableOpacity
-            style={styles.button2}
+            style={styles.button3}
             onPress={() => {{
               setAcana("");
             }; setData(sidsInfo)}}>
@@ -217,7 +217,7 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
 
     </Modal>
    
-      </View>
+      </ScrollView>
     );
 
    
@@ -229,7 +229,9 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
         //     padding: 10,
         //     flexWrap: 'nowrap',
             
+            
        
+
         //   },
         //   button: {
         //     display: 'flex',
@@ -263,7 +265,6 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
         //     width: '30%',
         //     backgroundColor: '#ADD8E6',
         //   }
-          
-        // });
 
+  
 export default LearningScreen

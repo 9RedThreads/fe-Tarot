@@ -3,24 +3,10 @@ import { View, Text, TextInput, Button, Image, ScrollView, TouchableOpacity, Mod
 import React from 'react'
 import { sidsInfo } from '../Tarot-cards/sids-cards';
 import axios from 'axios';
-
+import { styled } from 'nativewind';
 
 const ThreeCardsReadingScreen = () => {
 
-// const styles = StyleSheet.create({
-//   input: {
-//     height: 40,
-//     margin: 12,
-//     borderWidth: 1,
-//     padding: 10,
-//   },
-//   images: {
-//     height: 160,
-//     width: 90,
-//     alignItems: 'center',
-
-//   }
-// })
 
 const [intention, setIntention] = React.useState('');
 const [entry, setEntry] = React.useState('');
@@ -122,6 +108,7 @@ const ReadingStyle = () =>(
       />
 
 <Button
+
         title="strengthsWeaknessesGrowth"
         onPress={() =>  {setReadingStyle("strengthsWeaknessesGrowth"); setReadingStylePressed(true); setIntentionPressed(false); setShowThreeCards(true); setReadingCardOne("Strengths"); setReadingCardTwo("Weaknesses"); setReadingCardThree("Growth"); setIsLightCardOne(Math.random() < 0.5);setIsLightCardTwo(Math.random() < 0.5); setIsLightCardThree(Math.random() < 0.5)}}
        
@@ -133,29 +120,32 @@ const ReadingStyle = () =>(
 
 
 const ShowThreeCard = () =>(
-<ScrollView>
+
+
+<StyledScrollView>
     {cardOneImage}
     {cardTwoImage}
     {cardThreeImage}
-</ScrollView>
+</StyledScrollView>
 
 
 )
   return (
+<View className='bg-slate-100'>
+
 
 <ScrollView> 
   
 
       <View>
-      <Text>ThreeCardsReadingScreen</Text>
 
       <TextInput 
        placeholder="Please type your intention here..."
-        style={styles.input}
         onChangeText={setIntention}
         value={intention}
+        className = "bg-cyan-100 border-2 border-orange-700 text-black rounded-lg h-16 m-3 p-2"
       />
-<Button title="Submit Intention" onPress={ () => {setIntentionPressed(true)}}
+<StyledButton className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' title="Submit Intention" onPress={ () => {setIntentionPressed(true)}}
 />
 </View>
 
@@ -173,6 +163,7 @@ const ShowThreeCard = () =>(
         style={styles.input}
         onChangeText={setEntry}
         value={entry}
+        className = "bg-cyan-100 border-2 border-orange-700 text-black rounded-lg h-16 m-3 p-2"
       />
 <Button title="Submit Entry" onPress={handleSubmit}
 />
@@ -184,13 +175,21 @@ const ShowThreeCard = () =>(
     visible={imagePressed}
     >
 <ScrollView>
-  <Image style = {styles.images} source = {cardOne.image}/>
+  <Image style = {styles.images} source = {selectedCard.image}/>
               <Text >
                    Name : {selectedCard.name}  
                     Number: {selectedCard.number} 
         Arcana: {selectedCard.arcana},
          Suit: {selectedCard.suit},
          Elemental: {selectedCard.Elemental}
+
+         {isLightCardOne && selectedCard === cardOne? "Description:" + selectedCard.meanings.light: null}
+       {!isLightCardOne  && selectedCard === cardOne? "Description:" + selectedCard.meanings.shadow: null}
+       {isLightCardTwo && selectedCard === cardTwo? "Description:" + selectedCard.meanings.light: null}
+       {!isLightCardTwo  && selectedCard === cardTwo? "Description:" + selectedCard.meanings.shadow: null}
+       {isLightCardThree  && selectedCard === cardThree? "Description:" + selectedCard.meanings.light: null}
+       {!isLightCardThree && selectedCard === cardThree? "Description:" +  selectedCard.meanings.shadow + "": null}
+
       
                   </Text>
 
@@ -199,9 +198,10 @@ const ShowThreeCard = () =>(
 
       <TextInput 
        placeholder="Please type your diary here..."
-        style={styles.input}
+        
         onChangeText={setEntry}
         value={entry}
+        className = "bg-cyan-100 border-2 border-orange-700 text-black rounded-lg h-16 m-3 p-2"
       />
 <Button title="Submit Entry" onPress={handleSubmit}
 />
@@ -219,7 +219,7 @@ const ShowThreeCard = () =>(
 
     </ScrollView>
   
-    
+    </View>
   )
 }
 
