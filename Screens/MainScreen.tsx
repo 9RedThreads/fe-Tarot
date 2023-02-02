@@ -38,7 +38,10 @@ const [entries, setEntries] = useState([])
       <TouchableOpacity onPress={() => navigation.navigate("Auth")}>
         <Text>Login / SignIng ( click me)</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate("OneCardReading")}>
+      <TouchableOpacity
+        className="scale-25"
+        onPress={() => navigation.navigate("OneCardReading")}
+      >
         <Image
           onPress={() => navigation.navigate("ThreeCardsReading")}
           source={require("../Tarot-cards/card-img/backOfCardsTestImage.jpg")}
