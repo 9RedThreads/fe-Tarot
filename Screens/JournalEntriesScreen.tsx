@@ -1,10 +1,14 @@
 import { View, Text, Image, ScrollView, TextInput } from 'react-native'
 import React from 'react'
 import { sidsInfo } from '../Tarot-cards/sids-cards';
+import { sidsInfo } from '../Tarot-cards/sids-cards';
 
 const JournalEntriesScreen = ({route}) => {
 
   const {entry} = route.params;
+  const entryCards = entry.tarot_card_id
+  const cardInfo = JSON.parse(entryCards)
+  let imagePosition = 1
   const entryCards = entry.tarot_card_id
   const cardInfo = JSON.parse(entryCards)
   let imagePosition = 1
@@ -18,8 +22,10 @@ const JournalEntriesScreen = ({route}) => {
         })}
       <TextInput 
       className=' col-span-full'
+      className=' col-span-full'
             value={entry.entry_body}
           />
+    </ScrollView>
     </ScrollView>
   )
 }

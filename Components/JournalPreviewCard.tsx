@@ -13,7 +13,7 @@ const JournalPreviewCard = ({ entry }: Props) => {
 
   return (
     <View>
-      <Text className="bg-gray-400 rounded-xl shadow-lg"
+      <Text className="bg-Red rounded-xl shadow-lg"
         onPress={() => {
           navigation.navigate("JournalEntries", {entry: entry});
         }}

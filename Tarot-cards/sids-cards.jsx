@@ -3003,7 +3003,7 @@ export const sidsInfo =  [
 	  "Questions to Ask" : ["How much stuff do I really need?","How do I feel about wealth and abundance? How do I define these terms?","How might shedding some possessions open room for growth?"]
     },
     {
-        image: require('./card-img/p11.jpg'),
+       image: require('./card-img/p11.jpg'),
       "name": "Page of Pentacles",
       "number": "11",
       "arcana": "Minor Arcana",
