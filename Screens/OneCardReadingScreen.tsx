@@ -1,4 +1,4 @@
-import { View, Text, TextInput, Button,StyleSheet, TouchableOpacity, Image, ScrollView, Modal} from 'react-native'
+import { View, Text, TextInput, Button, TouchableOpacity, Image, ScrollView, Modal} from 'react-native'
 import React from 'react'
 import { sidsInfo } from '../Tarot-cards/sids-cards'
 import axios from 'axios'
@@ -9,20 +9,20 @@ import axios from 'axios'
 
 const OneCardReadingScreen = () => {
 
-  const styles = StyleSheet.create({
-    input: {
-      height: 40,
-      margin: 12,
-      borderWidth: 1,
-      padding: 10,
-    },
-    images: {
-      height: 160,
-      width: 90,
-      alignItems: 'center',
+  // const styles = StyleSheet.create({
+  //   input: {
+  //     height: 40,
+  //     margin: 12,
+  //     borderWidth: 1,
+  //     padding: 10,
+  //   },
+  //   images: {
+  //     height: 160,
+  //     width: 90,
+  //     alignItems: 'center',
   
-    }
-  })
+  //   }
+  // })
   const [intention, setIntention] = React.useState('');
   const [entry, setEntry] = React.useState('');
   const [intentionPressed, setIntentionPressed] = React.useState(false);

@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity, StyleSheet, Modal, ScrollView, Image, FlatList } from 'react-native'
+import { View, Text, TouchableOpacity, Modal, ScrollView, Image, FlatList } from 'react-native'
 import React, { useState } from 'react'
 import axios from 'axios';
 import { sidsInfo } from '../Tarot-cards/sids-cards';
@@ -224,46 +224,46 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
 
         }
 
-        const styles = StyleSheet.create({
-          container: {
-            padding: 10,
-            flexWrap: 'nowrap',
+        // const styles = StyleSheet.create({
+        //   container: {
+        //     padding: 10,
+        //     flexWrap: 'nowrap',
             
        
-          },
-          button: {
-            display: 'flex',
-            height: 30,
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: '80%',
-            backgroundColor: '#2AC062',
-          },  
-          text: {
-            fontSize: 14,
-            padding: 10,
-          },
-          closeText: {
-            fontSize: 24,
-            color: '#00479e',
-            textAlign: 'center',
-          },
-          images: {
-            height: 160,
-            width: 90,
-            alignItems: 'center',
+        //   },
+        //   button: {
+        //     display: 'flex',
+        //     height: 30,
+        //     justifyContent: 'center',
+        //     alignItems: 'center',
+        //     width: '80%',
+        //     backgroundColor: '#2AC062',
+        //   },  
+        //   text: {
+        //     fontSize: 14,
+        //     padding: 10,
+        //   },
+        //   closeText: {
+        //     fontSize: 24,
+        //     color: '#00479e',
+        //     textAlign: 'center',
+        //   },
+        //   images: {
+        //     height: 160,
+        //     width: 90,
+        //     alignItems: 'center',
          
           
-          },
-          button2:{
-            display: 'flex',
-            height: 30,
-            justifyContent: 'center',
-            alignItems: 'center',
-            width: '30%',
-            backgroundColor: '#ADD8E6',
-          }
+        //   },
+        //   button2:{
+        //     display: 'flex',
+        //     height: 30,
+        //     justifyContent: 'center',
+        //     alignItems: 'center',
+        //     width: '30%',
+        //     backgroundColor: '#ADD8E6',
+        //   }
           
-        });
+        // });
 
 export default LearningScreen
