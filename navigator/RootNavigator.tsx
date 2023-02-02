@@ -6,17 +6,51 @@ import OneCardReadingScreen from "../Screens/OneCardReadingScreen";
 import JournalEntriesScreen from '../Screens/JournalEntriesScreen';
 
 
+import { autoLogin } from "../Screens/AuthScreen";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { useContext, useEffect } from "react";
+import AuthContext from "../store/auth-context";
+
 export type RootStackParamList = {
   BottomTabNavigator: undefined;
-  ThreeCardsReading:undefined;
+  ThreeCardsReading: undefined;
   OneCardReading: undefined;
-  Auth: undefined;
+  Auth: { isLogout: boolean };
   JournalEntries: undefined;
 };
+
+
 
 const RootNavigator = () => {
 
     const RootStack = createNativeStackNavigator<RootStackParamList>();
+type rootParmaType = NativeStackNavigationProp<RootStackParamList>;
+const navigation = useNavigation<rootParmaType>();
+const authCtx = useContext(AuthContext);
+const server = authCtx.production ? authCtx.urls.pro : authCtx.urls.dev;
+const api = `${server}/api/users/profile`;
+
+useEffect(() => {
+  // console.log("is user logged in? ", authCtx.isLogged);
+  if (!authCtx.isLogged) {
+    autoLogin(api)
+      .then((user: any) => {
+        const { email, jwt, user_id, user_name } = user;
+        authCtx.setJwt(jwt);
+        authCtx.setIsloggedIn(true);
+        authCtx.setEmail(email);
+        authCtx.setUsername(user_name);
+        authCtx.setUserId(user_id.toString());
+        navigation.navigate("BottomTabNavigator");
+      })
+      .catch((err) => {
+        navigation.navigate("Auth", { isLogout: false });
+      });
+  } else {
+    navigation.navigate("BottomTabNavigator");
+  }
+}, [authCtx.isLogged]);
 
     return (
       <RootStack.Navigator>
@@ -28,7 +62,11 @@ const RootNavigator = () => {
         </RootStack.Group>
 
         <RootStack.Group>
-          <RootStack.Screen name="Auth" component={AuthScreen} />
+          <RootStack.Screen
+            name="Auth"
+            component={AuthScreen}
+            options={{ headerBackVisible: false }}
+          />
         </RootStack.Group>
 
         <RootStack.Group>
