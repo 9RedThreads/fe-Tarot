@@ -2,7 +2,11 @@ import { View, Text, TextInput, Button, TouchableOpacity, Image, ScrollView, Mod
 import React from 'react'
 import { sidsInfo } from '../Tarot-cards/sids-cards'
 import axios from 'axios'
+import { styled } from 'nativewind';
 
+const StyledView = styled(View)
+const StyledText = styled(Text)
+const StyledImage = styled(Image)
 
 const OneCardReadingScreen = () => {
 
@@ -20,7 +24,12 @@ const OneCardReadingScreen = () => {
   
   //   }
   // })
+  const [intention, setIntention] = React.useState('');
+
+    }
+  })
   const [intention, setIntention] = React.useState('oneCard');
+
   const [entry, setEntry] = React.useState('');
   const [intentionPressed, setIntentionPressed] = React.useState(false);
   const [cardOne, setCardOne] = React.useState(sidsInfo[Math.floor(Math.random() * sidsInfo.length)])
@@ -30,7 +39,7 @@ const [isLightCardOne, setIsLightCardOne] = React.useState(Math.random() < 0.5);
 const [readingCardOne, setReadingCardOne] = React.useState('');
 const [questionToAsk, setQuestionToAsk] = React.useState(cardOne["Questions to Ask"][Math.floor(Math.random() * cardOne["Questions to Ask"].length)]);
 
-const meaningsLight = selectedCard.meanings.light
+
 
 const postEntry = (postBody: any) => {
 
@@ -68,12 +77,11 @@ const handleSubmit = (e: any) => {
 
 
 const [cardOneImage, setCardOneImage ] = React.useState(
-
-  <View className='w-screen bg-red mt-5'>
   <TouchableOpacity onPress={() =>{{setImagePressed(true); setSelectedCard(cardOne)};}}>
-  <Image className=' self-center m-4'   source = {cardOne.image} />
-  </TouchableOpacity>
-  </View>);
+  <Image style = {styles.images}   source = {cardOne.image} />
+  </TouchableOpacity>);
+
+
   
 const ShowSingleCard = () =>(
 <ScrollView>
@@ -85,90 +93,58 @@ const ShowSingleCard = () =>(
 )
 
   return (
-    <ScrollView className='bg-white'>
-      
-      <ShowSingleCard/> 
-      
-      <Text className=' text-base text-center font-semibold p-3 pb-0 pt-5 rounded-md bg-white border-blue border-[12px] m-4'  >{questionToAsk} </Text>
+    <View>
 
-    <Text className='text-xl self-center  '>Journal Entry</Text>
 
-    <ScrollView className=' m-3 rounded-md bg-blue'>
+
+
+ 
+
+<ShowSingleCard/> 
+<Text>{questionToAsk} </Text>
+
+    <Text className='text-xl text-300'>Please type your diary entry</Text>
     <TextInput 
            placeholder="Please type your diary entry here"
+            style={styles.input}
             onChangeText={setEntry}
-            multiline={true}
             value={entry}
-            className=' p-1 m-3 bg-white text-start rounded-md h-24'
+            className='h-60 w-70 p-1 border-8  rounded-md bg-300'
           />
-    <TouchableOpacity onPress={handleSubmit}> 
-      <Text className="text-center bg-red rounded-md w-30 self-end  p-2 m-3 mt-0 text-sm font-semibold">Submit Entry</Text>
-      </TouchableOpacity>
-    </ScrollView>
 
       {/* onPress just console logs entry but entry changes state as you type would likely need another function on onPress to post new entry     */}
-      
-     
-    
+    <Button title="Submit Entry" onPress={handleSubmit}
+    />
+
 <Modal animationType = {"slide"}
     transparent={false}
     visible={imagePressed}
     >
-<ScrollView className='bg-white' >
-  <Image className='self-center shadow-xl' source = {cardOne.image}/>
-  <View className=' m-3 rounded-md bg-blue'>
-  <View className=" p-3 m-3 bg-white rounded-md w-11/12 self-center " >
-              <Text className='text-xl self-center ' >
-                   {selectedCard.name}  
-
-              </Text>
-              <Text className=' inset-x-6 '>
+<ScrollView>
+  <Image style = {styles.images} source = {cardOne.image}/>
+              <Text >
+                   Name : {selectedCard.name}  
                     Number: {selectedCard.number} 
-
-              </Text>
-                    <Text className=' inset-x-6 '>
-        Arcana: {selectedCard.arcana}
-        </Text>
-                    <Text className=' inset-x-6 '>
-         Suit: {selectedCard.suit}
-         </Text>
-                    <Text className=' inset-x-6 '>
+        Arcana: {selectedCard.arcana},
+         Suit: {selectedCard.suit},
          Elemental: {selectedCard.Elemental}
-         </Text>
-                    <Text className='mt-3'>
-                    Description: 
-                    </Text>
-                    <View className=' inset-x-3'>
-
-        {isLightCardOne? meaningsLight.map( (meaning) => {
-  return(
-    <Text key={meaning} className=''>
-      {meaning}
-    </Text>
-  )
-}): null}
-       {!isLightCardOne? `${selectedCard.meanings.shadow}`: null}
+        
+       Description: {isLightCardOne? selectedCard.meanings.light: null}
+       Description: {!isLightCardOne? selectedCard.meanings.shadow: null}
       
-                  </View>
+                  </Text>
 
-                  </View>
-                  </View>
                   <View>
-    
-                  <Text className='text-xl self-center  '>Journal Entry</Text>
+      <Text>Submit Diary</Text>
 
-<ScrollView className=' m-3 rounded-md bg-blue'>
-    <TextInput 
-           placeholder="Please type your diary entry here"
-            onChangeText={setEntry}
-            multiline={true}
-            value={entry}
-            className=' p-1 m-3 bg-white text-start rounded-md h-24'
-          />
-    <TouchableOpacity onPress={handleSubmit}> 
-      <Text className="text-center bg-red rounded-md w-30 self-end  p-2 m-3 mt-0 text-sm font-semibold">Submit Entry</Text>
-      </TouchableOpacity>
-    </ScrollView>
+      <TextInput 
+       placeholder="Please type your diary here..."
+        style={styles.input}
+        onChangeText={setEntry}
+        value={entry}
+      />
+<Button title="Submit Entry" onPress={handleSubmit}
+/>
 </View>
 
                   
@@ -179,7 +155,7 @@ const ShowSingleCard = () =>(
   }> Close Card </Text>
 
     </Modal>
-    </ScrollView>
+    </View>
 
 
   )

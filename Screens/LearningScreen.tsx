@@ -199,16 +199,34 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
     >
 <ScrollView>
   <Image source = {selectedCard.image}/>
+  <View className=' m-3 rounded-md bg-blue'>
+  <View className=" p-3 m-3 bg-white rounded-md w-11/12 self-center " >
+
               <Text >
-                   Name : {selectedCard.name}  
+              <Text className='text-xl self-center ' >
+                   {selectedCard.name}  
+
+              </Text>
+              <Text className=' inset-x-6 '>
                     Number: {selectedCard.number} 
-        Arcana: {selectedCard.arcana},
-         Suit: {selectedCard.suit},
+
+              </Text>            
+                <Text className=' inset-x-6 '>
+        Arcana: {selectedCard.arcana}
+        </Text>
+        <Text className=' inset-x-6 '>
+         Suit: {selectedCard.suit}
+         </Text>
+         <Text className=' inset-x-6 '>
          Elemental: {selectedCard.Elemental}
+         </Text>
         
 
 
                   </Text>
+                  </View>
+                  </View>
+
                   </ScrollView>
                   <Text 
   onPress={() => {
