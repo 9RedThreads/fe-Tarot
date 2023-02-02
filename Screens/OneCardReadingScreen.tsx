@@ -173,7 +173,7 @@ const ShowSingleCard = () =>(
 
                   
                   </ScrollView>
-                  <Text
+                  <Text className="text-center bg-red rounded-md w-30 self-end  p-0.5 m-3 mt-0 text-sm font-semibold"
   onPress={() => {
     setImagePressed(!imagePressed);}
   }> Close Card </Text>
