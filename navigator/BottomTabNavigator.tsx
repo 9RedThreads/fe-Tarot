@@ -28,8 +28,8 @@ const BottomTabNavigator = () => {
   return (
     <BottomTab.Navigator
       screenOptions={({ route }) => ({
-        tabBarActiveTintColor: "#59C1CC",
-        tabBarInactiveTintColor: "gray",
+        tabBarActiveTintColor: "#A74A28",
+        tabBarInactiveTintColor: "darkGrey",
       })}
     >
       <BottomTab.Screen name="Main" component={MainScreen} />
