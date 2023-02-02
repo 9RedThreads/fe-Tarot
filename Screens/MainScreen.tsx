@@ -30,7 +30,7 @@ const MainScreen = () => {
      
      <Text className="text-darkGrey font-semibold text-3xl p-4 pl-6">Tarot Journal</Text>
       <TouchableOpacity
-      //onPress={() => navigation.navigate("OneCardReading")}
+      onPress={() => navigation.navigate("OneCardReading")}
       >
         <View className= "flex flex-wrap flex-row bg-blue w-screen pb-20 h-60 ">
         <Image className= "scale-75 inline-flex p-0 m-0 -translate-y-3"
