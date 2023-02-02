@@ -30,17 +30,24 @@ const [selectedCard, setSelectedCard] = React.useState(cardOne);
 
 const [cardOneImage, setCardOneImage ] = React.useState(
 <TouchableOpacity onPress={() =>{{setImagePressed(true); setSelectedCard(cardOne)};}}>
-<Image source = {cardOne.image} />
+
+<Image  className='self-center shadow-xl'  source = {cardOne.image} />
+
 </TouchableOpacity>);
 
 const [cardTwoImage, setCardTwoImage ] = React.useState(
   <TouchableOpacity onPress={() =>{{setImagePressed(true); setSelectedCard(cardTwo)};}}>
-  <Image source = {cardTwo.image} />
+
+  <Image  className='self-center shadow-xl' source = {cardTwo.image} />
+
+
   </TouchableOpacity>);
 
 const [cardThreeImage, setCardThreeImage ] = React.useState(
   <TouchableOpacity onPress={() =>{{setImagePressed(true); setSelectedCard(cardThree)};}}>
-  <Image source = {cardThree.image} />
+
+  <Image  className='self-center shadow-xl'  source = {cardThree.image} />
+
   </TouchableOpacity>);
 
 // States for each reading style if needed
@@ -143,9 +150,11 @@ const ShowThreeCard = () =>(
        placeholder="Please type your intention here..."
         onChangeText={setIntention}
         value={intention}
-        className = "bg-cyan-100 border-2 border-orange-700 text-black rounded-lg h-16 m-3 p-2"
+        className = 'p-1 m-3 bg-white text-start rounded-md h-24 border-2'
       />
+
 <Button className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded' title="Submit Intention" onPress={ () => {setIntentionPressed(true)}}
+
 />
 </View>
 
@@ -160,11 +169,12 @@ const ShowThreeCard = () =>(
 
       <TextInput 
        placeholder="Please type your diary here..."
+
         onChangeText={setEntry}
         value={entry}
-        className = "bg-cyan-100 border-2 border-orange-700 text-black rounded-lg h-16 m-3 p-2"
+        className =' p-1 m-3 bg-white text-start rounded-md h-24 border-2'
       />
-<Button title="Submit Entry" onPress={handleSubmit}
+<Button  title="Submit Entry" onPress={handleSubmit}
 />
 </View>
 
@@ -174,7 +184,9 @@ const ShowThreeCard = () =>(
     visible={imagePressed}
     >
 <ScrollView>
-  <Image source = {selectedCard.image}/>
+
+  <Image  source = {selectedCard.image}/>
+
               <Text >
                    Name : {selectedCard.name}  
                     Number: {selectedCard.number} 
@@ -200,7 +212,7 @@ const ShowThreeCard = () =>(
         
         onChangeText={setEntry}
         value={entry}
-        className = "bg-cyan-100 border-2 border-orange-700 text-black rounded-lg h-16 m-3 p-2"
+        className ='p-1 m-3 bg-white text-start rounded-md h-24 border-2'
       />
 <Button title="Submit Entry" onPress={handleSubmit}
 />

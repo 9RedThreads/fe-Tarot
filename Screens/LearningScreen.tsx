@@ -63,7 +63,9 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
             visible={howTarot}
            >
      <ScrollView>
+
               <Text >
+
               How to do Tarot
 
               What is Tarot?
@@ -137,7 +139,10 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
 
           </Modal>
 
+
+
        <TouchableOpacity           
+
             onPress={() => {
               setUseApp(true);
             }}>
@@ -145,11 +150,13 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
         </TouchableOpacity>          
 
         <TouchableOpacity
+
             onPress={() => {
               setHowTarot(true);
             }}>
             <Text >How to do a Tarot reading</Text>
         </TouchableOpacity>   
+
 
 <Text>Select Acana </Text>
         <TouchableOpacity           
@@ -160,6 +167,7 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
         </TouchableOpacity>   
 
         <TouchableOpacity
+
             onPress={() => {{
               setAcana("Major Arcana");
             }; setData(sidsInfo.filter(indCard => indCard.arcana === "Major Arcana"))}}>
@@ -167,6 +175,7 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
         </TouchableOpacity>   
 
         <TouchableOpacity
+
             onPress={() => {{
               setAcana("");
             }; setData(sidsInfo)}}>
@@ -180,7 +189,9 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
         renderItem={({item}) => {
        
         return  <TouchableOpacity onPress={() =>{{setImagePressed(true); setSelectedCard(item)}}}>
+
           <Image source = {item.image}/>
+
 
           
           </TouchableOpacity>
@@ -194,16 +205,38 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
     >
 <ScrollView>
   <Image source = {selectedCard.image}/>
+
+  <View className=' m-3 rounded-md bg-blue'>
+  <View className=" p-3 m-3 bg-white rounded-md w-11/12 self-center " >
+
+              <Text >
+              <Text className='text-xl self-center ' >
+                   {selectedCard.name}  
+
+              </Text>
+              <Text className=' inset-x-6 '>
+
               <Text>
-                   Name : {selectedCard.name}  
+
                     Number: {selectedCard.number} 
-        Arcana: {selectedCard.arcana},
-         Suit: {selectedCard.suit},
+
+              </Text>            
+                <Text className=' inset-x-6 '>
+        Arcana: {selectedCard.arcana}
+        </Text>
+        <Text className=' inset-x-6 '>
+         Suit: {selectedCard.suit}
+         </Text>
+         <Text className=' inset-x-6 '>
          Elemental: {selectedCard.Elemental}
+         </Text>
         
 
 
                   </Text>
+                  </View>
+                  </View>
+
                   </ScrollView>
                   <Text 
   onPress={() => {
