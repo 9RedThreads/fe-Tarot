@@ -1,7 +1,5 @@
-
 import { Component, useEffect, useState } from "react";
-import { ScrollView, Text, TouchableOpacity, Button, Image, View } from "react-native";
-
+import { ScrollView, Text, TouchableOpacity, Button, Image } from "react-native";
 import {
   useNavigation,
   CompositeNavigationProp,
@@ -12,6 +10,7 @@ import { BottomTabStackParamList } from "../navigator/BottomTabNavigator";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import React from "react";
+import { styled } from "nativewind";
 import JournalPreview from "../Components/JournalPreview";
 import {getEntries} from "../utils"
 type MainScreenNavigation = CompositeNavigationProp<
@@ -19,9 +18,7 @@ type MainScreenNavigation = CompositeNavigationProp<
   NativeStackNavigationProp<RootStackParamList>
 >;
 
-
 const MainScreen = () => {
-
   const navigation = useNavigation<MainScreenNavigation>();
 
 const [user, setUser] = useState("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Impjc2hlYXJvbkBob3RtYWlsLmNvLnVrIiwidXNlcklkIjoiOSIsImlhdCI6MTY3NTE2NTcyNSwiZXhwIjoxNjkwNzE3NzI1fQ.1_4GgiRnXm3RMxVG7IZ4CeSS5ypIar3FmF-HfC0FQvM")
@@ -36,45 +33,22 @@ const [entries, setEntries] = useState([])
 
 
   return (
-  <ScrollView className= "bg-white bg-origin-border rounded-md border-darkGrey border-8">
-    
-    <TouchableOpacity onPress={() => navigation.navigate("Auth")}>
-     <Text className="text-center bg-red rounded-md self-end w-20 p-3 mt-3 mr-3 font-bold ">login</Text>
-     </TouchableOpacity>
-     
-     <Text className="text-darkGrey font-semibold text-3xl p-4 pl-6">Tarot Journal</Text>
-      <TouchableOpacity
-      //onPress={() => navigation.navigate("OneCardReading")}
-      >
-        <View className= "flex flex-wrap flex-row bg-blue w-screen pb-20 h-60 ">
-        <Image className= "scale-75 inline-flex p-0 m-0 -translate-y-3"
-          source={require("../Tarot-cards/backCard.png")}
-          />
-        <View className="inline-flex p-10 pt-16 pl-14 ">
-        <Text className=" text-center text-2xl font-Georgia  ">Daily</Text>
-        <Text className="text-center text-2xl">Reading</Text>
-        </View>
-        </View>
+    <ScrollView>
+      <Text>Tarrot App Main Screen</Text>
+      <TouchableOpacity onPress={() => navigation.navigate("Auth")}>
+        <Text>Login / SignIng ( click me)</Text>
       </TouchableOpacity>
-
-      <TouchableOpacity onPress={() => navigation.navigate("ThreeCardsReading")}> 
-      <Text className="text-center bg-red rounded-md w-80 self-center p-3 m-3 text-base font-bold">Three Card Reading</Text>
+      <TouchableOpacity onPress={() => navigation.navigate("OneCardReading")}>
+        <Image
+          onPress={() => navigation.navigate("ThreeCardsReading")}
+          source={require("../Tarot-cards/card-img/backOfCardsTestImage.jpg")}
+        />
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate("MyJournal")}> 
-      <Text className="text-center bg-red rounded-md w-80 self-center p-3 text-base font-bold">My Journal</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate("Learning")}> 
-      <Text className="text-center bg-red rounded-md w-80 self-center p-3 m-3 text-base font-bold">Learn</Text>
-      </TouchableOpacity>
-
-      <JournalPreview></JournalPreview>
-
       <Button
         title="3 Card Reading"
         onPress={() => navigation.navigate("ThreeCardsReading")}
       ></Button>
       <JournalPreview entries={entries} />
-
     </ScrollView>
   );
 };
