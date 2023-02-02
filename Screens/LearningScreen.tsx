@@ -17,7 +17,7 @@ const LearningScreen = () => {
 
 
   return(
-    <ScrollView style = { styles.container }>
+    <ScrollView >
  
 
 <Modal
@@ -26,7 +26,7 @@ const LearningScreen = () => {
             visible={useApp}
            >
      <ScrollView>
-     <Text style = { styles.text }>{`
+     <Text >{`
 
 
 Our app is a space for you to get your tarot readings and to reflect on those readings. 
@@ -50,7 +50,7 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
 
           
 </ScrollView>
-                  <Text style={styles.closeText}
+                  <Text 
   onPress={() => {
     setUseApp(!useApp);}
   }> Close how to use app </Text>
@@ -63,7 +63,7 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
             visible={howTarot}
            >
      <ScrollView>
-              <Text style = { styles.text }>
+              <Text>
               How to do Tarot
 
               What is Tarot?
@@ -130,7 +130,7 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
               From a more mystical perspective, this energy guides and connects you with the cards, whilst for those who are less mystically inclined it can be more meditative and help focus your attention for an interpretation once the cards have been dealt.
                   </Text>
                   </ScrollView>
-                  <Text style={styles.closeText}
+                  <Text 
   onPress={() => {
     setHowTarot(!howTarot);}
   }> Close how to do a tarot reading </Text>
@@ -138,7 +138,7 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
           </Modal>
 
        <TouchableOpacity
-            style={styles.button}
+            
             onPress={() => {
               setUseApp(true);
             }}>
@@ -146,16 +146,16 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
         </TouchableOpacity>          
 
         <TouchableOpacity
-            style={styles.button}
+         
             onPress={() => {
               setHowTarot(true);
             }}>
             <Text >How to do a Tarot reading</Text>
         </TouchableOpacity>   
 
-<Text style = {styles.text}>Select Acana </Text>
+<Text >Select Acana </Text>
         <TouchableOpacity
-            style={styles.button2}
+         
             onPress={() => {{
               setAcana("Minor Arcana");
             }; setData(sidsInfo.filter(indCard => indCard.arcana === "Minor Arcana"))}}>
@@ -163,7 +163,7 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
         </TouchableOpacity>   
 
         <TouchableOpacity
-            style={styles.button2}
+            
             onPress={() => {{
               setAcana("Major Arcana");
             }; setData(sidsInfo.filter(indCard => indCard.arcana === "Major Arcana"))}}>
@@ -171,7 +171,7 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
         </TouchableOpacity>   
 
         <TouchableOpacity
-            style={styles.button3}
+         
             onPress={() => {{
               setAcana("");
             }; setData(sidsInfo)}}>
@@ -185,7 +185,7 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
         renderItem={({item}) => {
        
         return  <TouchableOpacity onPress={() =>{{setImagePressed(true); setSelectedCard(item)}}}>
-          <Image  style={styles.images} source = {item.image}/>
+          <Image   source = {item.image}/>
 
           
           </TouchableOpacity>
@@ -198,8 +198,8 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
     visible={imagePressed}
     >
 <ScrollView>
-  <Image style = {styles.images} source = {selectedCard.image}/>
-              <Text style = { styles.text }>
+  <Image source = {selectedCard.image}/>
+              <Text >
                    Name : {selectedCard.name}  
                     Number: {selectedCard.number} 
         Arcana: {selectedCard.arcana},
@@ -210,7 +210,7 @@ Select the “Learning button” bellow. Here you will find a list of all the ta
 
                   </Text>
                   </ScrollView>
-                  <Text style={styles.closeText}
+                  <Text 
   onPress={() => {
     setImagePressed(!imagePressed);}
   }> Close Card </Text>
