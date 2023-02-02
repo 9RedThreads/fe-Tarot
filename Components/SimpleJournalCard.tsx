@@ -2,8 +2,9 @@ import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Text, View, ScrollView, TouchableOpacity, Image } from "react-native";
 import MyJournalScreen from "../Screens/MyJournalScreen";
-import { useEffect, useState, useContext } from "react";
+import { useContext } from "react";
 import EntriesContext from "../store/entriesContext";
+import { sidsInfo } from '../Tarot-cards/sids-cards';
 
 type NavigateToJournalEntriesProp =
   NativeStackNavigationProp<RootStackParamList>;
@@ -15,12 +16,15 @@ const SimpleJournalCard = ({day, month}) => {
   const matchingEntries: any = entries.filter((entry: any) => {
     return entry.created_at.slice(5,10) === `${month}-${day}`
   })
-const cardParams = (matchingEntries.length!==0)? () => navigation.navigate("JournalEntries", {entry: matchingEntries[0]}): () => alert('No entry found')
 
+const cardInfo = (matchingEntries.length!==0)? JSON.parse(matchingEntries[0].tarot_card_id): {id: 0}
+
+const cardParams = (cardInfo.id!==0)? () => navigation.navigate("JournalEntries", {entry: matchingEntries[0]}): () => alert('No entry found')
+const cardImg = (cardInfo.id!==0)?sidsInfo[cardInfo[0].id].image: require('../Tarot-cards/card-img/backOfCardsTestImage.jpg')
   return (
-          <View className="border border-black">
+          <View>
     <TouchableOpacity key={`${month}-${day}`} onPress={cardParams}>
-        <Image className="border transform scale-y-75 scale-x-50 h-16 w-14" source={require('../Tarot-cards/card-img/backOfCardsTestImage.jpg')}/>
+        <Image className="transform scale-y-40 scale-x-30 h-16 w-14" source={cardImg}/>
     </TouchableOpacity> 
             </View>
   );

@@ -60,7 +60,7 @@ useEffect(() => {
           </Text>
         </TouchableOpacity>
         </View>
-        <View className="flex flex-row flex-wrap justify-evenly m-3 gap-5" >
+        <View className="flex flex-row flex-wrap justify-evenly m-10 gap-3" >
         {daysInMonth}
         </View>
     </ScrollView>
