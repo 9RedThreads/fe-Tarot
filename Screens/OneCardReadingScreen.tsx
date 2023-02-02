@@ -117,7 +117,8 @@ const OneCardReadingScreen = () => {
       </ScrollView>
 
       {/* onPress just console logs entry but entry changes state as you type would likely need another function on onPress to post new entry     */}
-
+      
+     
       <Modal animationType={"slide"} transparent={false} visible={imagePressed}>
         <ScrollView className="bg-red">
           <Image className="self-center mt-3 " source={cardOne.image} />
@@ -168,14 +169,12 @@ const OneCardReadingScreen = () => {
             </ScrollView>
           </View>
         </ScrollView>
-        <Text
-          onPress={() => {
-            setImagePressed(!imagePressed);
-          }}>
-          {" "}
-          Close Card{" "}
-        </Text>
-      </Modal>
+                  <Text className="text-center bg-red rounded-md w-30 self-end  p-0.5 m-3 mt-0 text-sm font-semibold"
+  onPress={() => {
+    setImagePressed(!imagePressed);}
+  }> Close Card </Text>
+
+    </Modal>
     </ScrollView>
   );
 };
