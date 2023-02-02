@@ -20,7 +20,7 @@ const SimpleJournalCard = ({day, month}) => {
 const cardInfo = (matchingEntries.length!==0)? JSON.parse(matchingEntries[0].tarot_card_id): {id: 0}
 
 const cardParams = (cardInfo.id!==0)? () => navigation.navigate("JournalEntries", {entry: matchingEntries[0]}): () => alert('No entry found')
-const cardImg = (cardInfo.id!==0)?sidsInfo[cardInfo[0].id].image: require('../Tarot-cards/card-img/backOfCardsTestImage.jpg')
+const cardImg = (cardInfo.id!==0)?sidsInfo[cardInfo[0].id].image: require('../Tarot-cards/backCard.png')
   return (
           <View>
     <TouchableOpacity key={`${month}-${day}`} onPress={cardParams}>

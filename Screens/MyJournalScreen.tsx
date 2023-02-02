@@ -37,8 +37,8 @@ useEffect(() => {
     let d = (i<10)? `0${i}`: i
     let m = (displayMonth<10)? `0${displayMonth}`: displayMonth
     allJCards.push(
-      <View>
-        <SimpleJournalCard  key={i} day={d} month={m} />
+      <View key={i}>
+        <SimpleJournalCard   day={d} month={m} />
       </View>
     );
   }
