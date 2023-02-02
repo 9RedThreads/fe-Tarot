@@ -25,7 +25,19 @@ const styles = StyleSheet.create({
     width: 90,
     alignItems: 'center',
 
-  }
+  },
+  button: {
+    display: 'flex',
+    height: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '80%',
+    backgroundColor: '#C7E0F4',
+    borderWidth: 1,
+    margin:4,
+    borderRadius: 20,
+    alignContent:'center'
+  },  
 })
 
 const [intention, setIntention] = React.useState('');
@@ -128,6 +140,7 @@ const ReadingStyle = () =>(
       />
 
 <Button
+
         title="strengthsWeaknessesGrowth"
         onPress={() =>  {setReadingStyle("strengthsWeaknessesGrowth"); setReadingStylePressed(true); setIntentionPressed(false); setShowThreeCards(true); setReadingCardOne("Strengths"); setReadingCardTwo("Weaknesses"); setReadingCardThree("Growth"); setIsLightCardOne(Math.random() < 0.5);setIsLightCardTwo(Math.random() < 0.5); setIsLightCardThree(Math.random() < 0.5)}}
        
