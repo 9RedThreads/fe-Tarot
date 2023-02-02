@@ -143,7 +143,7 @@ const ShowThreeCard = () =>(
        placeholder="Please type your intention here..."
         onChangeText={setIntention}
         value={intention}
-        className = "bg-cyan-100 border-2 border-orange-700 text-black rounded-lg h-16 m-3 p-2"
+        className = 'p-1 m-3 bg-white text-start rounded-md h-24 border-2'
       />
 <Button  title="Submit Intention" onPress={ () => {setIntentionPressed(true)}}
 />
@@ -163,7 +163,7 @@ const ShowThreeCard = () =>(
         
         onChangeText={setEntry}
         value={entry}
-        className = "bg-cyan-100 border-2 border-orange-700 text-black rounded-lg h-16 m-3 p-2"
+        className =' p-1 m-3 bg-white text-start rounded-md h-24 border-2'
       />
 <Button  title="Submit Entry" onPress={handleSubmit}
 />
@@ -201,7 +201,7 @@ const ShowThreeCard = () =>(
         
         onChangeText={setEntry}
         value={entry}
-        className = "bg-cyan-100 border-2 border-orange-700 text-black rounded-lg h-16 m-3 p-2"
+        className ='p-1 m-3 bg-white text-start rounded-md h-24 border-2'
       />
 <Button title="Submit Entry" onPress={handleSubmit}
 />
